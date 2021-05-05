@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".RegisterActivity">
+
+    <Button
+        android:id="@+id/iniciarApp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="jugar"
+        android:text="Jugar"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.9" />
+
+    <EditText
+        android:id="@+id/editTextUsuario"
+        android:layout_width="379dp"
+        android:layout_height="44dp"
+        android:hint="Usuario"
+        app:layout_constraintBottom_toTopOf="@+id/iniciarApp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.168" />
+
+    <EditText
+        android:id="@+id/editTextContraseña"
+        android:layout_width="379dp"
+        android:layout_height="44dp"
+        android:hint="Contraseña"
+        app:layout_constraintBottom_toTopOf="@+id/iniciarApp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.277" />
+
+    <Button
+        android:id="@+id/btnRegister"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="140dp"
+        android:onClick="registro"
+        android:text="Registrase"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextContraseña"
+        app:layout_constraintVertical_bias="0.399" />
+
+    <TextView
+        android:id="@+id/textViewLogin"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:onClick="goLogin"
+        android:text="Ya tienes cuenta? Logueate"
+        app:layout_constraintBottom_toTopOf="@+id/btnRegister"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.066"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextContraseña"
+        app:layout_constraintVertical_bias="0.89" />
+
+    <EditText
+        android:id="@+id/editTextEquipoFavorito"
+        android:layout_width="379dp"
+        android:layout_height="44dp"
+        android:hint="Equipo Favorito"
+        app:layout_constraintBottom_toTopOf="@+id/editTextJugadorFavorito"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextContraseña" />
+
+    <EditText
+        android:id="@+id/editTextJugadorFavorito"
+        android:layout_width="379dp"
+        android:layout_height="44dp"
+        android:hint="Jugador Favorito"
+        app:layout_constraintBottom_toTopOf="@+id/textViewLogin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEquipoFavorito" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
