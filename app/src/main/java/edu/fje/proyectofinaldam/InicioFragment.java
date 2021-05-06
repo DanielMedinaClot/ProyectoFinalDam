@@ -1,5 +1,7 @@
 package edu.fje.proyectofinaldam;
 
+import android.app.ProgressDialog;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -22,6 +24,8 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.io.BufferedReader;
+import java.net.HttpURLConnection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -34,7 +38,7 @@ public class InicioFragment extends Fragment {
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
-
+    ProgressDialog pd;
 
 
     @Override
@@ -63,6 +67,7 @@ public class InicioFragment extends Fragment {
 
 //create post data as JSONObject - if your are using JSONArrayRequest use obviously an JSONArray :)
         RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+
         StringRequest getRequest = new StringRequest(Request.Method.GET, url,
                 new Response.Listener<String>()
                 {
@@ -114,3 +119,4 @@ public class InicioFragment extends Fragment {
     }
 
 }
+
