@@ -1,20 +1,28 @@
 package edu.fje.proyectofinaldam;
 
 import android.app.ProgressDialog;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.firebase.auth.FirebaseAuth;
@@ -23,20 +31,43 @@ import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.larvalabs.svgandroid.SVG;
+import com.larvalabs.svgandroid.SVGParser;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.BufferedReader;
 import java.net.HttpURLConnection;
 import java.util.HashMap;
 import java.util.Map;
+import java.io.InputStream;
+import java.net.URL;
 
 
 public class InicioFragment extends Fragment {
     public TextView prueba;
     public TextView jugadorFavorito;
     public TextView equipoFavorito;
+    public TextView statsJugadorFavorito;
+    public ImageView fotoJugadorFavorito;
+    public ImageView fotoEquipoFavorito;
 
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
+
+    String urlJugadores = "https://data.nba.net/10s/prod/v1/2020/players.json";
+    String urlEquipos = "https://data.nba.net/10s/prod/v1/2020/teams.json";
+
+    String jugadorFav;
+    String idJugadorFav;
+    String equipoFav;
+    String idEquipoFav;
+
+    RequestQueue queue;
+
+
 
     ProgressDialog pd;
 
@@ -57,46 +88,18 @@ public class InicioFragment extends Fragment {
         prueba = view.findViewById(R.id.textViewUsuario);
         jugadorFavorito = view.findViewById(R.id.textViewJugadorFavorito);
         equipoFavorito = view.findViewById(R.id.textViewEquipoFavorito);
+        statsJugadorFavorito = view.findViewById(R.id.textViewStatsJugadorFav);
+        fotoJugadorFavorito = view.findViewById(R.id.imageViewJugadorFav);
+        fotoEquipoFavorito = view.findViewById(R.id.imageViewEquipoFav);
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
         
         cogerInfoUser();
 
-        String url = "https://nba-stats4.p.rapidapi.com/players/";
+        cogerDatosConFirebase();
 
-//create post data as JSONObject - if your are using JSONArrayRequest use obviously an JSONArray :)
-        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
 
-        StringRequest getRequest = new StringRequest(Request.Method.GET, url,
-                new Response.Listener<String>()
-                {
-                    @Override
-                    public void onResponse(String response) {
-                        // response
-                        prueba.setText(response);
-                    }
-                },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
-                        prueba.setText("error");
-                    }
-                }
-        ) {        //this is the part, that adds the header to the request
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("x-rapidapi-key", "b0030df614msh86958735e39a051p11a017jsn3f3b87480909");
-                params.put("x-rapidapi-host","nba-stats4.p.rapidapi.com");
-                return params;
-            }
-        };
-
-// Add the request to the queue
-        queue.add(getRequest);
 
     }
     public void cogerInfoUser(){
@@ -104,8 +107,8 @@ public class InicioFragment extends Fragment {
         mDatabase.child("Usuarios").child(id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String jugadorFav = snapshot.child("jugadorFavorito").getValue().toString();
-                String equipoFav = snapshot.child("equipoFavorito").getValue().toString();
+                jugadorFav = snapshot.child("jugadorFavorito").getValue().toString();
+                equipoFav = snapshot.child("equipoFavorito").getValue().toString();
                 //emailUsuario.setText(user);
                 jugadorFavorito.setText(jugadorFav);
                 equipoFavorito.setText(equipoFav);
@@ -117,6 +120,204 @@ public class InicioFragment extends Fragment {
             }
         });
     }
+
+
+    public void cogerDatosConFirebase(){
+        queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+        JsonObjectRequest requestJugadores = new JsonObjectRequest(Request.Method.GET, urlJugadores, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            JSONObject league = response.getJSONObject("league");
+                            JSONArray dataArray = league.getJSONArray("standard");
+
+                            for(int i=0; i<dataArray.length();i++){
+                                JSONObject jugador = dataArray.getJSONObject(i);
+                                if(jugador.getString("lastName").equals(jugadorFav)){     //igualar con la id luego
+                                    jugadorFavorito.setText(dataArray.getString(i));
+                                    idJugadorFav = jugador.getString("personId");
+
+                                    //"https://cdn.nba.com/headshots/nba/latest/1040x760/"+idJugadorFav+".png"
+                                }
+                                //String firstName = standard.getString("standard");
+
+
+                            }
+                            //generarImagenJugador(idJugadorFav);
+                            String urlFotoJug =  "https://cdn.nba.com/headshots/nba/latest/1040x760/"+idJugadorFav+".png";
+                            new DownLoadImageTask(fotoJugadorFavorito).execute(urlFotoJug);
+                            statsJugador(idJugadorFav);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            jugadorFavorito.setText("error json");
+
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //error.printStackTrace();
+                jugadorFavorito.setText("error volley");
+            }
+        }
+        );
+        JsonObjectRequest requestEquipos = new JsonObjectRequest(Request.Method.GET, urlEquipos, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            JSONObject league = response.getJSONObject("league");
+                            JSONArray dataArray = league.getJSONArray("standard");
+
+                            for(int i=0; i<dataArray.length();i++){
+                                JSONObject equipo = dataArray.getJSONObject(i);
+                                if(equipo.getString("urlName").equals(equipoFav.toLowerCase())){   //luego igualar con las id
+                                    equipoFavorito.setText(dataArray.getString(i));
+                                    idEquipoFav = equipo.getString("teamId");
+                                }
+                                //String firstName = standard.getString("standard");
+
+
+                            }
+                            String urlFotoEquipo =  "https://cdn.nba.com/logos/nba/"+idEquipoFav+"/global/L/logo.svg";
+                            //new DownLoadImageTask(fotoEquipoFavorito).execute(urlFotoEquipo);
+                            new HttpImageRequestTask(fotoEquipoFavorito).execute(urlFotoEquipo);
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            equipoFavorito.setText("error json");
+
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //error.printStackTrace();
+                equipoFavorito.setText("error volley");
+            }
+        }
+        );
+        queue.add(requestJugadores);
+        queue.add(requestEquipos);
+    }
+
+    public void statsJugador(String id) {
+        String urlStatsJugador = "https://data.nba.net/10s/prod/v1/2020/players/"+id+"_profile.json";
+        JsonObjectRequest requestStatsEquipos = new JsonObjectRequest(Request.Method.GET, urlStatsJugador, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            JSONObject league = response.getJSONObject("league");
+                            JSONObject dataArray = league.getJSONObject("standard");
+                            JSONObject statsArray = dataArray.getJSONObject("stats");
+
+                            statsJugadorFavorito.setText(statsArray.toString());
+                                //String firstName = standard.getString("standard");
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            statsJugadorFavorito.setText("error json");
+
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //error.printStackTrace();
+                equipoFavorito.setText("error volley");
+            }
+        }
+        );
+        queue.add(requestStatsEquipos);
+
+    }
+
+    public void generarImagenJugador(String id){
+        String urlFotoJug =  "https://cdn.nba.com/headshots/nba/latest/1040x760/"+id+".png";
+
+
+        //fotoJugadorFavorito.;
+    }
+
+    private class DownLoadImageTask extends AsyncTask<String,Void,Bitmap>{
+        ImageView imageView;
+
+        public DownLoadImageTask(ImageView imageView){
+            this.imageView = imageView;
+        }
+
+        /*
+            doInBackground(Params... params)
+                Override this method to perform a computation on a background thread.
+         */
+        protected Bitmap doInBackground(String...urls){
+            String urlOfImage = urls[0];
+            Bitmap logo = null;
+            try{
+                InputStream is = new URL(urlOfImage).openStream();
+                /*
+                    decodeStream(InputStream is)
+                        Decode an input stream into a bitmap.
+                 */
+                logo = BitmapFactory.decodeStream(is);
+            }catch(Exception e){ // Catch the download exception
+                e.printStackTrace();
+            }
+            return logo;
+        }
+
+        /*
+            onPostExecute(Result result)
+                Runs on the UI thread after doInBackground(Params...).
+         */
+        protected void onPostExecute(Bitmap result){
+            imageView.setImageBitmap(result);
+        }
+    }
+
+
+    private class HttpImageRequestTask extends AsyncTask<String, Void, Drawable> {
+        ImageView imageView;
+
+        public HttpImageRequestTask(ImageView imageView){
+            this.imageView = imageView;
+        }
+
+
+        protected Drawable doInBackground(String...urls) {
+            String urlOfImage = urls[0];
+            try {
+
+                InputStream inputStream = new URL(urlOfImage).openStream();
+                SVG svg = SVGParser.getSVGFromInputStream(inputStream);
+                Drawable drawable = svg.createPictureDrawable();
+                return drawable;
+            } catch (Exception e) {
+                Log.e("InicioFragment", e.getMessage(), e);
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Drawable drawable) {
+            // Update the view
+            imageView.setImageDrawable(drawable);
+        }
+    }
+
 
 }
 

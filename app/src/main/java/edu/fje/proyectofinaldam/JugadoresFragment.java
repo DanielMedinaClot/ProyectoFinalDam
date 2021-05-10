@@ -128,23 +128,18 @@ public class JugadoresFragment extends Fragment {
                     public void onResponse(JSONObject response) {
 
                         try {
-                            String league = response.getString("standard");
-
-                            /* salta Json except
-                            JSONArray leagueArray = new JSONArray(league);
-
-                            pruebaJugadores.setText(leagueArray.toString());
-
-                             */
-                            pruebaJugadores.setText(league);
-
-                            //pruebaJugadores.setText(response.getString("league")); //funciona
+                            JSONObject league = response.getJSONObject("league");
+                            JSONArray dataArray = league.getJSONArray("standard");
+                            pruebaJugadores.setText(dataArray.toString());
                             /*
-                            for(int i=0; i<jsonArray2.length();i++){
-                                JSONObject standard = jsonArray2.getJSONObject(i);
-                                //String firstName = standard.getString("standard");
+                            for(int i=0; i<dataArray.length();i++){
+                                JSONObject jugador = dataArray.getJSONObject(i);
 
+                                if(jugador.getString("lastName").equals("Lillard")){
+                                    pruebaJugadores.setText(dataArray.getString(i));
+                                }
 
+                                pruebaJugadores.setText(jugador.toString());
                             }
 
                              */
