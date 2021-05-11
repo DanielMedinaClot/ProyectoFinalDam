@@ -10,6 +10,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -41,6 +43,9 @@ import java.util.Map;
 public class JugadoresFragment extends Fragment {
 
     public TextView pruebaJugadores;
+    public EditText buscadorJugadores;
+    public Button buscarJugador;
+
     RequestQueue queue;
 
     //String url = "https://nba-stats4.p.rapidapi.com/players/";
@@ -48,6 +53,23 @@ public class JugadoresFragment extends Fragment {
     String url = "https://data.nba.net/10s/prod/v1/2020/players.json";
     //String league;
     //JSONArray leagueArray;
+
+    String jugadorBuscado;
+    String nombre;
+    String apellido;
+
+    String temporaryDisplayName;
+    String jersey;
+    String pos;
+    String heightMeters;
+    String weightKilograms;
+    String dateOfBirth;
+    String country;
+    String teamId, personId;
+    String draftTeamId, pickNum, roundNum, seasonYear;
+    String collegeName;
+    String nbaDebutYear;
+
 
 
     @Override
@@ -71,6 +93,11 @@ public class JugadoresFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         pruebaJugadores = view.findViewById(R.id.textViewJugadores);
+        buscadorJugadores = view.findViewById(R.id.editTextBuscarJugador);
+        buscarJugador = view.findViewById(R.id.btnBuscarJugador);
+
+
+
         JSONObject json = new JSONObject();
         JSONArray jsonArray = new JSONArray();
         ArrayList<String> a1 = new ArrayList<String>();
@@ -121,52 +148,96 @@ public class JugadoresFragment extends Fragment {
         queue.add(getRequest);
 
 */
-        queue = Volley.newRequestQueue(getActivity().getApplicationContext());
-        JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
-                new Response.Listener<JSONObject>() {
-                    @Override
-                    public void onResponse(JSONObject response) {
 
-                        try {
-                            JSONObject league = response.getJSONObject("league");
-                            JSONArray dataArray = league.getJSONArray("standard");
-                            pruebaJugadores.setText(dataArray.toString());
-                            /*
-                            for(int i=0; i<dataArray.length();i++){
-                                JSONObject jugador = dataArray.getJSONObject(i);
+    buscarJugador.setOnClickListener(new View.OnClickListener() {
+        @Override
+        public void onClick(View v) {
+            queue = Volley.newRequestQueue(getActivity().getApplicationContext());
+            jugadorBuscado = buscadorJugadores.getText().toString().toLowerCase();
+            separarContenidoBuscador(jugadorBuscado);
 
-                                if(jugador.getString("lastName").equals("Lillard")){
-                                    pruebaJugadores.setText(dataArray.getString(i));
+
+
+            JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
+                    new Response.Listener<JSONObject>() {
+                        @Override
+                        public void onResponse(JSONObject response) {
+
+                            try {
+                                JSONObject league = response.getJSONObject("league");
+                                JSONArray dataArray = league.getJSONArray("standard");
+                                //pruebaJugadores.setText(dataArray.toString());
+
+                                for(int i=0; i<dataArray.length();i++){
+                                    JSONObject jugador = dataArray.getJSONObject(i);
+
+                                    if(jugador.getString("lastName").toLowerCase().equals(apellido) && jugador.getString("firstName").toLowerCase().equals(nombre) || jugador.getString("lastName").toLowerCase().equals(jugadorBuscado)){
+                                        pruebaJugadores.setText(dataArray.getString(i));
+
+                                        temporaryDisplayName = jugador.getString("temporaryDisplayName");
+                                        jersey = jugador.getString("jersey");
+                                        pos = jugador.getString("pos");
+                                        heightMeters = jugador.getString("heightMeters");
+                                        weightKilograms = jugador.getString("weightKilograms");
+                                        dateOfBirth = jugador.getString("dateOfBirthUTC");
+                                        country = jugador.getString("country");
+                                        teamId = jugador.getString("teamId");
+                                        personId = jugador.getString("personId");
+                                        /*
+
+                                        draftTeamId = jugador.getString("teamId");
+                                        pickNum = jugador.getString("pickNum");
+                                        roundNum = jugador.getString("roundNum");
+                                        seasonYear = jugador.getString("seasonYear");
+
+                                         */
+                                        collegeName = jugador.getString("collegeName");
+                                        nbaDebutYear = jugador.getString("nbaDebutYear");
+
+
+
+                                    }
+
+                                    //pruebaJugadores.setText(jugador.toString());
                                 }
 
-                                pruebaJugadores.setText(jugador.toString());
+
+
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                                pruebaJugadores.setText("error json");
+
                             }
 
-                             */
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                            pruebaJugadores.setText("error json");
-
                         }
-
-                    }
-                }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                //error.printStackTrace();
-                pruebaJugadores.setText("error volley");
+                    }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    //error.printStackTrace();
+                    pruebaJugadores.setText("error volley");
+                }
             }
+            );
+            queue.add(request);
         }
-        );
-        queue.add(request);
-
+    });
 
     }
 
 
-
-
+    public void separarContenidoBuscador(String contenido){
+        int cantidadDeEspacios = 0;
+        // Recorremos la cadena:
+        for (int i = 0; i < contenido.length(); i++) {
+            // Si el carácter en [i] es un espacio (' ') aumentamos el contador
+            if (contenido.charAt(i) == ' ') cantidadDeEspacios++;
+        }
+        if(cantidadDeEspacios == 1){
+            String[] arrayJugadorBuscado = contenido.split(" ");
+            nombre = arrayJugadorBuscado[0];
+            apellido = arrayJugadorBuscado[1];
+        }
+    }
 
 
 
