@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".CambiarDatosFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <EditText
+        android:id="@+id/editTextPasswordAntiguo"
+        android:layout_width="340dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="100dp"
+        android:hint="Password Antigua"
+        />
+    <EditText
+        android:id="@+id/editTextPasswordNueva"
+        android:layout_width="340dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="200dp"
+        android:hint="Password nueva"
+        />
+
+    <EditText
+        android:id="@+id/editTextNuevoJugadorFavorito"
+        android:layout_width="340dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="300dp"
+        android:hint="Nombre del equipo"
+        />
+
+
+    <EditText
+        android:id="@+id/editTextNuevoEquipoFavorito"
+        android:layout_width="340dp"
+        android:layout_height="44dp"
+        android:layout_marginTop="400dp"
+        android:hint="Nombre del equipo"
+        />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="500dp"
+        android:text="Button" />
+
+</FrameLayout>

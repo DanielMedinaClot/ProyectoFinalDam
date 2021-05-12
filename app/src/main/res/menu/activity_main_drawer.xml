@@ -28,5 +28,13 @@
             android:id="@+id/equiposFragment"
             android:icon="@drawable/ic_menu_camera"
             android:title="Equipos" />
+        <item
+            android:id="@+id/draftFragment"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Draft" />
+        <item
+            android:id="@+id/cambiarDatosFragment"
+            android:icon="@drawable/ic_menu_camera"
+            android:title="Cambiar Datos Perfil" />
     </group>
 </menu>

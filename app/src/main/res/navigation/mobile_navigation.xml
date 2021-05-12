@@ -37,4 +37,14 @@
         android:name="edu.fje.proyectofinaldam.EquiposFragment"
         android:label="fragment_equipos"
         tools:layout="@layout/fragment_equipos" />
+    <fragment
+        android:id="@+id/draftFragment"
+        android:name="edu.fje.proyectofinaldam.DraftFragment"
+        android:label="fragment_draft"
+        tools:layout="@layout/fragment_draft" />
+    <fragment
+        android:id="@+id/cambiarDatosFragment"
+        android:name="edu.fje.proyectofinaldam.CambiarDatosFragment"
+        android:label="fragment_cambiar_datos"
+        tools:layout="@layout/fragment_cambiar_datos" />
 </navigation>

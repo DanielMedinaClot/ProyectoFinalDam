@@ -1,5 +1,9 @@
 package edu.fje.proyectofinaldam;
 
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.Drawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -12,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -22,6 +27,8 @@ import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonObjectRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.larvalabs.svgandroid.SVG;
+import com.larvalabs.svgandroid.SVGParser;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -43,8 +50,10 @@ import java.util.Map;
 public class JugadoresFragment extends Fragment {
 
     public TextView pruebaJugadores;
+    public TextView statsJugadorBuscado;
     public EditText buscadorJugadores;
     public Button buscarJugador;
+    public ImageView fotoJugadorBuscado;
 
     RequestQueue queue;
 
@@ -95,7 +104,8 @@ public class JugadoresFragment extends Fragment {
         pruebaJugadores = view.findViewById(R.id.textViewJugadores);
         buscadorJugadores = view.findViewById(R.id.editTextBuscarJugador);
         buscarJugador = view.findViewById(R.id.btnBuscarJugador);
-
+        fotoJugadorBuscado = view.findViewById(R.id.imageViewJugadorBuscado);
+        statsJugadorBuscado = view.findViewById(R.id.textViewStatsJugadorBuscado);
 
 
         JSONObject json = new JSONObject();
@@ -196,12 +206,15 @@ public class JugadoresFragment extends Fragment {
 
 
 
+
                                     }
 
                                     //pruebaJugadores.setText(jugador.toString());
                                 }
 
-
+                                String urlFotoJug =  "https://cdn.nba.com/headshots/nba/latest/1040x760/"+personId+".png";
+                                new JugadoresFragment.DownLoadImageTask(fotoJugadorBuscado).execute(urlFotoJug);
+                                statsJugador(personId);
 
                             } catch (JSONException e) {
                                 e.printStackTrace();
@@ -240,6 +253,107 @@ public class JugadoresFragment extends Fragment {
     }
 
 
+    public void statsJugador(String id) {
+        String urlStatsJugador = "https://data.nba.net/10s/prod/v1/2020/players/"+id+"_profile.json";
+        JsonObjectRequest requestStatsJugadores = new JsonObjectRequest(Request.Method.GET, urlStatsJugador, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
 
+                        try {
+                            JSONObject league = response.getJSONObject("league");
+                            JSONObject dataArray = league.getJSONObject("standard");
+                            JSONObject statsArray = dataArray.getJSONObject("stats");
+
+                            statsJugadorBuscado.setText(statsArray.toString());
+                            //String firstName = standard.getString("standard");
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            statsJugadorBuscado.setText("error json");
+
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //error.printStackTrace();
+                statsJugadorBuscado.setText("error volley");
+            }
+        }
+        );
+        queue.add(requestStatsJugadores);
+
+    }
+
+
+    private class DownLoadImageTask extends AsyncTask<String,Void, Bitmap> {
+        ImageView imageView;
+
+        public DownLoadImageTask(ImageView imageView){
+            this.imageView = imageView;
+        }
+
+        /*
+            doInBackground(Params... params)
+                Override this method to perform a computation on a background thread.
+         */
+        protected Bitmap doInBackground(String...urls){
+            String urlOfImage = urls[0];
+            Bitmap logo = null;
+            try{
+                InputStream is = new URL(urlOfImage).openStream();
+                /*
+                    decodeStream(InputStream is)
+                        Decode an input stream into a bitmap.
+                 */
+                logo = BitmapFactory.decodeStream(is);
+            }catch(Exception e){ // Catch the download exception
+                e.printStackTrace();
+            }
+            return logo;
+        }
+
+        /*
+            onPostExecute(Result result)
+                Runs on the UI thread after doInBackground(Params...).
+         */
+        protected void onPostExecute(Bitmap result){
+            imageView.setImageBitmap(result);
+        }
+    }
+
+
+    private class HttpImageRequestTask extends AsyncTask<String, Void, Drawable> {
+        ImageView imageView;
+
+        public HttpImageRequestTask(ImageView imageView){
+            this.imageView = imageView;
+        }
+
+
+        protected Drawable doInBackground(String...urls) {
+            String urlOfImage = urls[0];
+            try {
+
+                InputStream inputStream = new URL(urlOfImage).openStream();
+                SVG svg = SVGParser.getSVGFromInputStream(inputStream);
+                Drawable drawable = svg.createPictureDrawable();
+                return drawable;
+            } catch (Exception e) {
+                Log.e("InicioFragment", e.getMessage(), e);
+            }
+
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Drawable drawable) {
+            // Update the view
+            imageView.setImageDrawable(drawable);
+        }
+    }
 
 }

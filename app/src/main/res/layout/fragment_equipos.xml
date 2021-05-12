@@ -15,18 +15,26 @@
 
     <EditText
         android:id="@+id/editTextBuscarEquipo"
-        android:layout_width="379dp"
+        android:layout_width="340dp"
         android:layout_height="44dp"
         android:layout_marginTop="20dp"
-        android:hint="Usuario"
+        android:hint="Nombre del equipo"
         />
 
     <Button
         android:id="@+id/btnBuscarEquipo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="70dp"
+        android:layout_width="60dp"
+        android:layout_height="55dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="345dp"
         android:text="Button"
         />
+
+    <TextView
+        android:id="@+id/textViewRosterEquipo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="300dp"
+        android:text="TextView" />
 
 </FrameLayout>

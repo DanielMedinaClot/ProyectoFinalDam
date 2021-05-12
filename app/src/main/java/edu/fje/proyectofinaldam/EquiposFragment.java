@@ -24,22 +24,28 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.util.ArrayList;
+
 
 public class EquiposFragment extends Fragment {
 
     public TextView pruebaEquipos;
+    public TextView rosterEquipo;
     public EditText buscadorEquipos;
     public Button buscarEquipo;
+    public ArrayList<String> arrayJugadoresRoster = new ArrayList<String>();
 
     String jugadorBuscado;
     String nombre;
     String apellido;
+    String teamId;
 
     RequestQueue queue;
 
     //String url = "https://nba-stats4.p.rapidapi.com/players/";
     //String url = "https://free-nba.p.rapidapi.com/players/";
     String url = "https://data.nba.net/10s/prod/v1/2020/teams.json";
+    String urlJug = "https://data.nba.net/10s/prod/v1/2020/players.json";
     //String league;
     //JSONArray leagueArray;
 
@@ -69,6 +75,7 @@ public class EquiposFragment extends Fragment {
         pruebaEquipos = view.findViewById(R.id.textViewEquipos);
         buscadorEquipos = view.findViewById(R.id.editTextBuscarEquipo);
         buscarEquipo = view.findViewById(R.id.btnBuscarEquipo);
+        rosterEquipo = view.findViewById(R.id.textViewRosterEquipo);
 
 
         buscarEquipo.setOnClickListener(new View.OnClickListener() {
@@ -95,6 +102,8 @@ public class EquiposFragment extends Fragment {
 
                                         if(equipo.getString("urlName").toLowerCase().equals(equipoBuscado) || equipo.getString("city").toLowerCase().equals(equipoBuscado) || equipo.getString("fullName").toLowerCase().equals(equipoBuscado)){
                                             pruebaEquipos.setText(dataArray.getString(i));
+                                            teamId = equipo.getString("teamId");
+                                            rosterEquipoBuscado(teamId);
                                         }
 
                                         //pruebaJugadores.setText(jugador.toString());
@@ -122,18 +131,85 @@ public class EquiposFragment extends Fragment {
         });
     }
 
-    public void separarContenidoBuscador(String contenido){
-        int cantidadDeEspacios = 0;
-        // Recorremos la cadena:
-        for (int i = 0; i < contenido.length(); i++) {
-            // Si el carácter en [i] es un espacio (' ') aumentamos el contador
-            if (contenido.charAt(i) == ' ') cantidadDeEspacios++;
+    public void rosterEquipoBuscado(String id){
+        String urlRosterEquipo = "https://data.nba.net/prod/v1/2020/teams/"+id+"/roster.json" ;
+        JsonObjectRequest requestRosterEquipo = new JsonObjectRequest(Request.Method.GET, urlRosterEquipo, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            JSONObject league = response.getJSONObject("league");
+                            JSONObject dataArray = league.getJSONObject("standard");
+                            JSONArray rosterArray = dataArray.getJSONArray("players");
+
+                            for(int i=0; i<rosterArray.length();i++){
+                                JSONObject jugador = rosterArray.getJSONObject(i);
+                                String jugadorIdRoster = jugador.getString("personId");
+                                nombresRoster(jugadorIdRoster);
+
+                                //pruebaJugadores.setText(jugador.toString());
+                            }
+                            //rosterEquipo.setText(rosterArray.toString());
+                            //String firstName = standard.getString("standard");
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            rosterEquipo.setText("error json");
+
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //error.printStackTrace();
+                rosterEquipo.setText("error volley");
+            }
         }
-        if(cantidadDeEspacios == 1){
-            String[] arrayJugadorBuscado = contenido.split(" ");
-            nombre = arrayJugadorBuscado[0];
-            apellido = arrayJugadorBuscado[1];
+        );
+        queue.add(requestRosterEquipo);
+    }
+
+    public void nombresRoster(String id){
+        JsonObjectRequest requestNombresRoster = new JsonObjectRequest(Request.Method.GET, urlJug, null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+
+                        try {
+                            JSONObject league = response.getJSONObject("league");
+                            JSONArray dataArray = league.getJSONArray("standard");
+                            //pruebaJugadores.setText(dataArray.toString());
+
+                            for(int i=0; i<dataArray.length();i++){
+                                JSONObject jugador = dataArray.getJSONObject(i);
+
+                                if(jugador.getString("personId").toLowerCase().equals(id)){
+                                    String temporaryDisplayName = jugador.getString("temporaryDisplayName");
+                                    arrayJugadoresRoster.add(temporaryDisplayName);
+                                }
+                            }
+                            rosterEquipo.setText(arrayJugadoresRoster.toString());
+
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                            rosterEquipo.setText("error json");
+
+                        }
+
+                    }
+                }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                //error.printStackTrace();
+                rosterEquipo.setText("error volley");
+            }
         }
+        );
+        queue.add(requestNombresRoster);
     }
 
 }
