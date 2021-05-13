@@ -181,7 +181,7 @@ public class JugadoresFragment extends Fragment {
                                 for(int i=0; i<dataArray.length();i++){
                                     JSONObject jugador = dataArray.getJSONObject(i);
 
-                                    if(jugador.getString("lastName").toLowerCase().equals(apellido) && jugador.getString("firstName").toLowerCase().equals(nombre) || jugador.getString("lastName").toLowerCase().equals(jugadorBuscado)){
+                                    if(jugador.getString("lastName").toLowerCase().equals(apellido) && jugador.getString("firstName").toLowerCase().equals(nombre) || jugador.getString("lastName").toLowerCase().equals(jugadorBuscado) || jugador.getString("firstName").toLowerCase().equals(jugadorBuscado)){
                                         pruebaJugadores.setText(dataArray.getString(i));
 
                                         temporaryDisplayName = jugador.getString("temporaryDisplayName");

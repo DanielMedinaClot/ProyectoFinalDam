@@ -64,6 +64,7 @@ public class InicioFragment extends Fragment {
     String idJugadorFav;
     String equipoFav;
     String idEquipoFav;
+    String nombre, apellido;
 
     RequestQueue queue;
 
@@ -107,11 +108,12 @@ public class InicioFragment extends Fragment {
         mDatabase.child("Usuarios").child(id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                jugadorFav = snapshot.child("jugadorFavorito").getValue().toString();
-                equipoFav = snapshot.child("equipoFavorito").getValue().toString();
+                jugadorFav = snapshot.child("jugadorFavorito").getValue().toString().toLowerCase();
+                equipoFav = snapshot.child("equipoFavorito").getValue().toString().toLowerCase();
                 //emailUsuario.setText(user);
                 jugadorFavorito.setText(jugadorFav);
                 equipoFavorito.setText(equipoFav);
+                separarContenidoBuscador(jugadorFav);
             }
 
             @Override
@@ -123,6 +125,7 @@ public class InicioFragment extends Fragment {
 
 
     public void cogerDatosConFirebase(){
+
         queue = Volley.newRequestQueue(getActivity().getApplicationContext());
         JsonObjectRequest requestJugadores = new JsonObjectRequest(Request.Method.GET, urlJugadores, null,
                 new Response.Listener<JSONObject>() {
@@ -135,7 +138,7 @@ public class InicioFragment extends Fragment {
 
                             for(int i=0; i<dataArray.length();i++){
                                 JSONObject jugador = dataArray.getJSONObject(i);
-                                if(jugador.getString("lastName").equals(jugadorFav)){     //igualar con la id luego
+                                if(jugador.getString("lastName").toLowerCase().equals(jugadorFav) || jugador.getString("lastName").toLowerCase().equals(jugadorFav) || jugador.getString("lastName").toLowerCase().equals(apellido) && jugador.getString("firstName").toLowerCase().equals(nombre) || jugador.getString("firstName").toLowerCase().equals(jugadorFav)){     //igualar con la id luego
                                     jugadorFavorito.setText(dataArray.getString(i));
                                     idJugadorFav = jugador.getString("personId");
 
@@ -177,7 +180,7 @@ public class InicioFragment extends Fragment {
 
                             for(int i=0; i<dataArray.length();i++){
                                 JSONObject equipo = dataArray.getJSONObject(i);
-                                if(equipo.getString("urlName").equals(equipoFav.toLowerCase())){   //luego igualar con las id
+                                if(equipo.getString("urlName").toLowerCase().equals(equipoFav) || equipo.getString("city").toLowerCase().equals(equipoFav) || equipo.getString("fullName").toLowerCase().equals(equipoFav)){
                                     equipoFavorito.setText(dataArray.getString(i));
                                     idEquipoFav = equipo.getString("teamId");
                                 }
@@ -318,6 +321,19 @@ public class InicioFragment extends Fragment {
         }
     }
 
+    public void separarContenidoBuscador(String contenido){
+        int cantidadDeEspacios = 0;
+        // Recorremos la cadena:
+        for (int i = 0; i < contenido.length(); i++) {
+            // Si el carácter en [i] es un espacio (' ') aumentamos el contador
+            if (contenido.charAt(i) == ' ') cantidadDeEspacios++;
+        }
+        if(cantidadDeEspacios == 1){
+            String[] arrayJugadorBuscado = contenido.split(" ");
+            nombre = arrayJugadorBuscado[0];
+            apellido = arrayJugadorBuscado[1];
+        }
+    }
 
 }
 

@@ -1,16 +1,22 @@
 package edu.fje.proyectofinaldam;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
+import android.widget.Toast;
 
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -18,12 +24,16 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class CambiarDatosFragment extends Fragment {
 
     public EditText antiguaPassword;
     public EditText nuevaPassword;
     public EditText nuevoJugadorFavorito;
     public EditText nuevoEquipoFavorito;
+    public Button btnCambiarDatos;
 
 
     private FirebaseAuth mAuth;
@@ -31,6 +41,10 @@ public class CambiarDatosFragment extends Fragment {
 
     public String antiguoJugadorFav;
     public String antiguoEquipoFav;
+    public String nuevoJugadorFav;
+    public String nuevoEquipoFav;
+
+    public String id;
 
 
 
@@ -57,12 +71,13 @@ public class CambiarDatosFragment extends Fragment {
         nuevaPassword = view.findViewById(R.id.editTextPasswordNueva);
         nuevoJugadorFavorito = view.findViewById(R.id.editTextNuevoJugadorFavorito);
         nuevoEquipoFavorito = view.findViewById(R.id.editTextNuevoEquipoFavorito);
+        btnCambiarDatos = view.findViewById(R.id.btnCambiarDatos);
 
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
 
-        String id = mAuth.getCurrentUser().getUid();
+        id = mAuth.getCurrentUser().getUid();
         mDatabase.child("Usuarios").child(id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
@@ -81,7 +96,50 @@ public class CambiarDatosFragment extends Fragment {
             }
         });
 
+        btnCambiarDatos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                nuevoJugadorFav = nuevoJugadorFavorito.getText().toString();
+                nuevoEquipoFav = nuevoEquipoFavorito.getText().toString();
+
+                if(TextUtils.isEmpty(nuevoEquipoFav)){
+                    nuevoEquipoFavorito.setError("Equipo favorito necesario");
+                    return;
+                }
+                if(TextUtils.isEmpty(nuevoJugadorFav)){
+                    nuevoJugadorFavorito.setError("Juagador Favorito necesario");
+                    return;
+                }
+
+                cambiarDatos();
+            }
+        });
+
 
 
     }
+    public void cambiarDatos(){
+        Map<String, Object> datosMap = new HashMap<>();
+        datosMap.put("equipoFavorito",nuevoEquipoFav);
+        datosMap.put("jugadorFavorito",nuevoJugadorFav);
+
+        mDatabase.child("Usuarios").child(id).updateChildren(datosMap).addOnCompleteListener(new OnCompleteListener<Void>() {
+
+            @Override
+            public void onComplete(@NonNull Task<Void> task2) {
+                if (task2.isSuccessful()) {
+                    Toast.makeText(getActivity(), "Datos Cambiados.",
+                            Toast.LENGTH_SHORT).show();
+                }else{
+                    Toast.makeText(getActivity(), "Error database.",
+                            Toast.LENGTH_SHORT).show();
+                }
+
+            }
+        });;
+    }
+
+    /*
+
+*/
 }
