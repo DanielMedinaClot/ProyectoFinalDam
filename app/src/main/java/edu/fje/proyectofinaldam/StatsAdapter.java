@@ -49,10 +49,11 @@ public class StatsAdapter extends RecyclerView.Adapter<StatsAdapter.ViewHolder> 
 
     public class ViewHolder extends RecyclerView.ViewHolder{
 
-        TextView gamesPlayed, mpg, ppg, rpg, apg, spg, bpg, topg, fgp, tpp, ftp;
+        TextView seasonYear, gamesPlayed, mpg, ppg, rpg, apg, spg, bpg, topg, fgp, tpp, ftp;
 
         ViewHolder(View itemView){
             super (itemView);
+            seasonYear = itemView.findViewById(R.id.textViewStatsSeasonYear);
             gamesPlayed = itemView.findViewById(R.id.textViewStatsGamesPlayed);
             mpg = itemView.findViewById(R.id.textViewStatsMPG);
             ppg = itemView.findViewById(R.id.textViewStatsPPG);
@@ -60,6 +61,7 @@ public class StatsAdapter extends RecyclerView.Adapter<StatsAdapter.ViewHolder> 
             apg = itemView.findViewById(R.id.textViewStatsAPG);
             spg = itemView.findViewById(R.id.textViewStatsSPG);
             bpg = itemView.findViewById(R.id.textViewStatsBPG);
+            topg = itemView.findViewById(R.id.textViewStatsTOPG);
             fgp = itemView.findViewById(R.id.textViewStatsFGP);
             tpp = itemView.findViewById(R.id.textViewStatsTPP);
             ftp = itemView.findViewById(R.id.textViewStatsFTP);
@@ -68,6 +70,7 @@ public class StatsAdapter extends RecyclerView.Adapter<StatsAdapter.ViewHolder> 
 
         }
         void bindData (StatsList item){
+            seasonYear.setText(item.getSeasonYear());
             gamesPlayed.setText(item.getGamesPlayed());
             mpg.setText(item.getGamesPlayed());
             ppg.setText(item.getPpg());
@@ -75,6 +78,7 @@ public class StatsAdapter extends RecyclerView.Adapter<StatsAdapter.ViewHolder> 
             apg.setText(item.getApg());
             spg.setText(item.getSpg());
             bpg.setText(item.getBpg());
+            topg.setText(item.getTopg());
             fgp.setText(item.getFgp());
             tpp.setText(item.getTpp());
             ftp.setText(item.getFtp());

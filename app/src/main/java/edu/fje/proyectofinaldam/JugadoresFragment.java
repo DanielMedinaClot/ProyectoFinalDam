@@ -216,9 +216,6 @@ public class JugadoresFragment extends Fragment {
                                         collegeName = jugador.getString("collegeName");
                                         nbaDebutYear = jugador.getString("nbaDebutYear");
 
-
-
-
                                     }
 
                                     //pruebaJugadores.setText(jugador.toString());
@@ -301,14 +298,12 @@ public class JugadoresFragment extends Fragment {
                                 fgp = statsTotal.getString("fgp");
                                 tpp = statsTotal.getString("tpp");
                                 ftp = statsTotal.getString("ftp");
-                                stats.add(new StatsList(gamesPlayed, mpg, ppg,rpg,apg, spg, bpg, topg, fgp, tpp, ftp));
-
-
-
+                                stats.add(new StatsList(statsSeasonYear, gamesPlayed, mpg, ppg,rpg,apg, spg, bpg, topg, fgp, tpp, ftp));
 
 
                             }
-
+                            StatsAdapter statsAdapter = new StatsAdapter(stats);
+                            recycler.setAdapter(statsAdapter);
                             //statsJugadorBuscado.setText(statsArray.toString());
                             //String firstName = standard.getString("standard");
 

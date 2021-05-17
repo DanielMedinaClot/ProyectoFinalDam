@@ -2,9 +2,10 @@ package edu.fje.proyectofinaldam;
 
 public class StatsList {
 
-    private String gamesPlayed, mpg, ppg, rpg, apg, spg, bpg, topg, fgp, tpp, ftp;
+    private String seasonYear, gamesPlayed, mpg, ppg, rpg, apg, spg, bpg, topg, fgp, tpp, ftp;
 
-    public StatsList(String gamesPlayed, String mpg, String ppg, String rpg, String apg, String spg, String bpg, String topg, String fgp, String tpp, String ftp) {
+    public StatsList(String seasonYear, String gamesPlayed, String mpg, String ppg, String rpg, String apg, String spg, String bpg, String topg, String fgp, String tpp, String ftp) {
+        this.seasonYear = seasonYear;
         this.gamesPlayed = gamesPlayed;
         this.mpg = mpg;
         this.ppg = ppg;
@@ -18,6 +19,13 @@ public class StatsList {
         this.ftp = ftp;
     }
 
+    public String getSeasonYear() {
+        return seasonYear;
+    }
+
+    public void setSeasonYear(String seasonYear) {
+        this.seasonYear = seasonYear;
+    }
 
     public String getGamesPlayed() {
         return gamesPlayed;

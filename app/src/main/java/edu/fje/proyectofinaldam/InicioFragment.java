@@ -65,6 +65,7 @@ public class InicioFragment extends Fragment {
     String equipoFav;
     String idEquipoFav;
     String nombre, apellido;
+    String tricode;
 
     RequestQueue queue;
 
@@ -183,13 +184,16 @@ public class InicioFragment extends Fragment {
                                 if(equipo.getString("urlName").toLowerCase().equals(equipoFav) || equipo.getString("city").toLowerCase().equals(equipoFav) || equipo.getString("fullName").toLowerCase().equals(equipoFav)){
                                     equipoFavorito.setText(dataArray.getString(i));
                                     idEquipoFav = equipo.getString("teamId");
+                                    tricode = equipo.getString("tricode");
+
                                 }
                                 //String firstName = standard.getString("standard");
 
 
                             }
                             String urlFotoEquipo =  "https://cdn.nba.com/logos/nba/"+idEquipoFav+"/global/L/logo.svg";
-                            //new DownLoadImageTask(fotoEquipoFavorito).execute(urlFotoEquipo);
+                            //Utils.fetchSvg(getContext(), urlFotoEquipo, fotoEquipoFavorito);
+                            new DownloadImageTask(fotoEquipoFavorito).execute("https://d2p3bygnnzw9w3.cloudfront.net/req/202105061/tlogo/bbr/"+tricode+".png");
                             //new HttpImageRequestTask(fotoEquipoFavorito).execute(urlFotoEquipo);
 
 
