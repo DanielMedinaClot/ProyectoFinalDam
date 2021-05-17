@@ -150,7 +150,7 @@ public class InicioFragment extends Fragment {
                             }
                             //generarImagenJugador(idJugadorFav);
                             String urlFotoJug =  "https://cdn.nba.com/headshots/nba/latest/1040x760/"+idJugadorFav+".png";
-                            new DownLoadImageTask(fotoJugadorFavorito).execute(urlFotoJug);
+                            new DownloadImageTask(fotoJugadorFavorito).execute(urlFotoJug);
                             statsJugador(idJugadorFav);
 
 
@@ -190,7 +190,7 @@ public class InicioFragment extends Fragment {
                             }
                             String urlFotoEquipo =  "https://cdn.nba.com/logos/nba/"+idEquipoFav+"/global/L/logo.svg";
                             //new DownLoadImageTask(fotoEquipoFavorito).execute(urlFotoEquipo);
-                            new HttpImageRequestTask(fotoEquipoFavorito).execute(urlFotoEquipo);
+                            //new HttpImageRequestTask(fotoEquipoFavorito).execute(urlFotoEquipo);
 
 
                         } catch (JSONException e) {
@@ -254,41 +254,7 @@ public class InicioFragment extends Fragment {
         //fotoJugadorFavorito.;
     }
 
-    private class DownLoadImageTask extends AsyncTask<String,Void,Bitmap>{
-        ImageView imageView;
 
-        public DownLoadImageTask(ImageView imageView){
-            this.imageView = imageView;
-        }
-
-        /*
-            doInBackground(Params... params)
-                Override this method to perform a computation on a background thread.
-         */
-        protected Bitmap doInBackground(String...urls){
-            String urlOfImage = urls[0];
-            Bitmap logo = null;
-            try{
-                InputStream is = new URL(urlOfImage).openStream();
-                /*
-                    decodeStream(InputStream is)
-                        Decode an input stream into a bitmap.
-                 */
-                logo = BitmapFactory.decodeStream(is);
-            }catch(Exception e){ // Catch the download exception
-                e.printStackTrace();
-            }
-            return logo;
-        }
-
-        /*
-            onPostExecute(Result result)
-                Runs on the UI thread after doInBackground(Params...).
-         */
-        protected void onPostExecute(Bitmap result){
-            imageView.setImageBitmap(result);
-        }
-    }
 
 
     private class HttpImageRequestTask extends AsyncTask<String, Void, Drawable> {
@@ -332,6 +298,10 @@ public class InicioFragment extends Fragment {
             String[] arrayJugadorBuscado = contenido.split(" ");
             nombre = arrayJugadorBuscado[0];
             apellido = arrayJugadorBuscado[1];
+        }else if(cantidadDeEspacios == 2){
+            String[] arrayJugadorBuscado = contenido.split(" ");
+            nombre = arrayJugadorBuscado[0];
+            apellido = arrayJugadorBuscado[1] + " " + arrayJugadorBuscado[2];
         }
     }
 

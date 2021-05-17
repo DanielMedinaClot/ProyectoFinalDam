@@ -8,26 +8,26 @@
     <fragment
         android:id="@+id/inicioFragment"
         android:name="edu.fje.proyectofinaldam.InicioFragment"
-        android:label="fragment_inicio"
+        android:label="INICIO"
         tools:layout="@layout/fragment_inicio" />
     <fragment
         android:id="@+id/jugadoresFragment"
         android:name="edu.fje.proyectofinaldam.JugadoresFragment"
-        android:label="fragment_jugadores"
+        android:label="JUGADORES"
         tools:layout="@layout/fragment_jugadores" />
     <fragment
         android:id="@+id/equiposFragment"
         android:name="edu.fje.proyectofinaldam.EquiposFragment"
-        android:label="fragment_equipos"
+        android:label="EQUIPOS"
         tools:layout="@layout/fragment_equipos" />
     <fragment
         android:id="@+id/draftFragment"
         android:name="edu.fje.proyectofinaldam.DraftFragment"
-        android:label="fragment_draft"
+        android:label="DRAFT 2020-21"
         tools:layout="@layout/fragment_draft" />
     <fragment
         android:id="@+id/cambiarDatosFragment"
         android:name="edu.fje.proyectofinaldam.CambiarDatosFragment"
-        android:label="fragment_cambiar_datos"
+        android:label="CAMBIAR DATOS"
         tools:layout="@layout/fragment_cambiar_datos" />
 </navigation>

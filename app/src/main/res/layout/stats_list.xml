@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="6dp">
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="4dp"
+                android:paddingLeft="150dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewStatsGamesPlayed"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Games Played"/>
+
+                <TextView
+                    android:id="@+id/textViewStatsMPG"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Minutes Per Game"/>
+
+                <TextView
+                    android:id="@+id/textViewStatsPPG"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Points Per Game"/>
+                <TextView
+                    android:id="@+id/textViewStatsRPG"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Rebounds Per Game"/>
+                <TextView
+                    android:id="@+id/textViewStatsAPG"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Assists Per Game"/>
+                <TextView
+                    android:id="@+id/textViewStatsSPG"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Steals Per Game"/>
+                <TextView
+                    android:id="@+id/textViewStatsBPG"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Blocks Per Game"/>
+                <TextView
+                    android:id="@+id/textViewStatsTOPG"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Turnovers Per Game"/>
+                <TextView
+                    android:id="@+id/textViewStatsFGP"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Field Goal Percentage"/>
+                <TextView
+                    android:id="@+id/textViewStatsTPP"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Three Point Percentage"/>
+                <TextView
+                    android:id="@+id/textViewStatsFTP"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Free Throw Percentage"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

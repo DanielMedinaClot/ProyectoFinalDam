@@ -32,6 +32,8 @@ public class MainActivity extends AppCompatActivity {
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
+    public String user;
+
     public TextView emailUsuario;
 
     @Override
@@ -49,6 +51,8 @@ public class MainActivity extends AppCompatActivity {
 
         cogerInfoUser();
 
+        //emailUsuario.setText(user);
+
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -62,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.inicioFragment, R.id.jugadoresFragment, R.id.equiposFragment, R.id.cambiarDatosFragment)
+                R.id.inicioFragment, R.id.jugadoresFragment, R.id.equiposFragment, R.id.draftFragment, R.id.cambiarDatosFragment)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
@@ -90,8 +94,8 @@ public class MainActivity extends AppCompatActivity {
         mDatabase.child("Usuarios").child(id).addValueEventListener(new ValueEventListener() {
             @Override
             public void onDataChange(@NonNull DataSnapshot snapshot) {
-                String user = snapshot.child("email").getValue().toString();
-                //emailUsuario.setText(user);
+                user = snapshot.child("email").getValue().toString();
+
 
             }
 

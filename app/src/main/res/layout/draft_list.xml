@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="6dp">
+
+            <ImageView
+                android:id="@+id/imageViewDraftHeadshot"
+                android:layout_width="110dp"
+                android:layout_height="130dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_gravity="center"
+                android:layout_marginStart="2dp"
+                android:layout_marginLeft="2dp"
+                android:paddingLeft="14dp"
+                android:paddingRight="14dp">
+
+            </ImageView>
+
+            <LinearLayout
+                android:id="@+id/linearLayout"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="4dp"
+                android:paddingLeft="150dp"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/textViewDraftProspect"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="DraftProspect"/>
+
+                <TextView
+                    android:id="@+id/textViewDraftNumber"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="DraftNumber"/>
+
+                <TextView
+                    android:id="@+id/textViewDraftTeam"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="DraftTeam"/>
+                <TextView
+                    android:id="@+id/textViewDraftPosition"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="DraftPosition"/>
+                <TextView
+                    android:id="@+id/textViewDraftCollege"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="DraftCollege"/>
+                <TextView
+                    android:id="@+id/textViewDraftCountry"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="Country"/>
+                <TextView
+                    android:id="@+id/textViewDraftHeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="DraftHeight"/>
+                <TextView
+                    android:id="@+id/textViewDraftWeight"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:text="DraftWeight"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+    </LinearLayout>
+
+</androidx.cardview.widget.CardView>

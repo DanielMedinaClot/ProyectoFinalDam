@@ -9,6 +9,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -44,6 +46,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -79,6 +82,13 @@ public class JugadoresFragment extends Fragment {
     String collegeName;
     String nbaDebutYear;
 
+    String statsSeasonYear;
+    String gamesPlayed, mpg, ppg, rpg, apg, spg, bpg, topg, fgp, tpp, ftp;
+    String min, points, totReb, assists, steals, blocks, fgm, fga, tpm, tpa, ftm, fta, dd2, td3;
+
+    List<StatsList> stats;
+    RecyclerView recycler;
+
 
 
     @Override
@@ -107,6 +117,8 @@ public class JugadoresFragment extends Fragment {
         fotoJugadorBuscado = view.findViewById(R.id.imageViewJugadorBuscado);
         statsJugadorBuscado = view.findViewById(R.id.textViewStatsJugadorBuscado);
 
+        recycler = view.findViewById(R.id.recyclerViewStatsJugadorBuscado);
+        recycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
 
         JSONObject json = new JSONObject();
         JSONArray jsonArray = new JSONArray();
@@ -213,7 +225,7 @@ public class JugadoresFragment extends Fragment {
                                 }
 
                                 String urlFotoJug =  "https://cdn.nba.com/headshots/nba/latest/1040x760/"+personId+".png";
-                                new JugadoresFragment.DownLoadImageTask(fotoJugadorBuscado).execute(urlFotoJug);
+                                new DownloadImageTask(fotoJugadorBuscado).execute(urlFotoJug);
                                 statsJugador(personId);
 
                             } catch (JSONException e) {
@@ -249,6 +261,10 @@ public class JugadoresFragment extends Fragment {
             String[] arrayJugadorBuscado = contenido.split(" ");
             nombre = arrayJugadorBuscado[0];
             apellido = arrayJugadorBuscado[1];
+        }else if(cantidadDeEspacios == 2) {
+            String[] arrayJugadorBuscado = contenido.split(" ");
+            nombre = arrayJugadorBuscado[0];
+            apellido = arrayJugadorBuscado[1] + " " + arrayJugadorBuscado[2] + "";
         }
     }
 
@@ -259,13 +275,41 @@ public class JugadoresFragment extends Fragment {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-
+                        stats = new ArrayList<>();
                         try {
                             JSONObject league = response.getJSONObject("league");
                             JSONObject dataArray = league.getJSONObject("standard");
                             JSONObject statsArray = dataArray.getJSONObject("stats");
+                            JSONObject statsCareerSummary = statsArray.getJSONObject("careerSummary");
 
-                            statsJugadorBuscado.setText(statsArray.toString());
+                            JSONObject statsRegularSeason = statsArray.getJSONObject("regularSeason");
+                            JSONArray statsSeason = statsRegularSeason.getJSONArray("season");
+                            for(int i = 0; i<statsSeason.length(); i++){
+                                JSONObject statsYear = statsSeason.getJSONObject(i);
+                                statsSeasonYear = statsYear.getString("seasonYear");
+                                JSONObject statsTotal = statsYear.getJSONObject("total");
+                                //mpg, ppg, rpg, apg, spg, bpg, topg, fgp, tpp, ftp;
+
+                                gamesPlayed = statsTotal.getString("gamesPlayed");
+                                mpg = statsTotal.getString("mpg");
+                                ppg = statsTotal.getString("ppg");
+                                rpg = statsTotal.getString("rpg");
+                                apg = statsTotal.getString("apg");
+                                spg = statsTotal.getString("spg");
+                                bpg = statsTotal.getString("bpg");
+                                topg = statsTotal.getString("topg");
+                                fgp = statsTotal.getString("fgp");
+                                tpp = statsTotal.getString("tpp");
+                                ftp = statsTotal.getString("ftp");
+                                stats.add(new StatsList(gamesPlayed, mpg, ppg,rpg,apg, spg, bpg, topg, fgp, tpp, ftp));
+
+
+
+
+
+                            }
+
+                            //statsJugadorBuscado.setText(statsArray.toString());
                             //String firstName = standard.getString("standard");
 
 
@@ -289,41 +333,7 @@ public class JugadoresFragment extends Fragment {
     }
 
 
-    private class DownLoadImageTask extends AsyncTask<String,Void, Bitmap> {
-        ImageView imageView;
 
-        public DownLoadImageTask(ImageView imageView){
-            this.imageView = imageView;
-        }
-
-        /*
-            doInBackground(Params... params)
-                Override this method to perform a computation on a background thread.
-         */
-        protected Bitmap doInBackground(String...urls){
-            String urlOfImage = urls[0];
-            Bitmap logo = null;
-            try{
-                InputStream is = new URL(urlOfImage).openStream();
-                /*
-                    decodeStream(InputStream is)
-                        Decode an input stream into a bitmap.
-                 */
-                logo = BitmapFactory.decodeStream(is);
-            }catch(Exception e){ // Catch the download exception
-                e.printStackTrace();
-            }
-            return logo;
-        }
-
-        /*
-            onPostExecute(Result result)
-                Runs on the UI thread after doInBackground(Params...).
-         */
-        protected void onPostExecute(Bitmap result){
-            imageView.setImageBitmap(result);
-        }
-    }
 
 
     private class HttpImageRequestTask extends AsyncTask<String, Void, Drawable> {
