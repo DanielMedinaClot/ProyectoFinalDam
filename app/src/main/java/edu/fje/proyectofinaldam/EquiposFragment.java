@@ -5,12 +5,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -25,6 +28,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 
 public class EquiposFragment extends Fragment {
@@ -33,6 +37,7 @@ public class EquiposFragment extends Fragment {
     public TextView rosterEquipo;
     public EditText buscadorEquipos;
     public Button buscarEquipo;
+    public ImageView fotoEquipo;
     public ArrayList<String> arrayJugadoresRoster = new ArrayList<String>();
 
     String jugadorBuscado;
@@ -53,6 +58,11 @@ public class EquiposFragment extends Fragment {
     String city;
     String fullName;
     String urlName;
+    String tricode;
+
+    String temporaryDisplayName, jersey , pos, nbaDebutYear, country;
+    List<JugadoresList> players;
+    RecyclerView recycler;
 
 
     @Override
@@ -76,7 +86,12 @@ public class EquiposFragment extends Fragment {
         buscadorEquipos = view.findViewById(R.id.editTextBuscarEquipo);
         buscarEquipo = view.findViewById(R.id.btnBuscarEquipo);
         rosterEquipo = view.findViewById(R.id.textViewRosterEquipo);
+        fotoEquipo = view.findViewById(R.id.imageViewFotoEquipo);
 
+        recycler = view.findViewById(R.id.recyclerViewEquipoRoster);
+        recycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
+
+        players = new ArrayList<>();
 
         buscarEquipo.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -85,7 +100,7 @@ public class EquiposFragment extends Fragment {
                 equipoBuscado = buscadorEquipos.getText().toString().toLowerCase();
                 //separarContenidoBuscador(jugadorBuscado);
 
-
+                players.clear();
 
                 JsonObjectRequest request = new JsonObjectRequest(Request.Method.GET, url, null,
                         new Response.Listener<JSONObject>() {
@@ -103,12 +118,20 @@ public class EquiposFragment extends Fragment {
                                         if(equipo.getString("urlName").toLowerCase().equals(equipoBuscado) || equipo.getString("city").toLowerCase().equals(equipoBuscado) || equipo.getString("fullName").toLowerCase().equals(equipoBuscado)){
                                             pruebaEquipos.setText(dataArray.getString(i));
                                             teamId = equipo.getString("teamId");
+                                            tricode = equipo.getString("tricode");
                                             rosterEquipoBuscado(teamId);
                                         }
 
                                         //pruebaJugadores.setText(jugador.toString());
                                     }
-
+                                    if(tricode.equals("BKN")){
+                                        tricode = "NJN";
+                                    }else if(tricode.equals("NOP")){
+                                        tricode = "NOH";
+                                    }else if(tricode.equals("PHX")){
+                                        tricode = "PHO";
+                                    }
+                                    new DownloadImageTask(fotoEquipo).execute("https://d2p3bygnnzw9w3.cloudfront.net/req/202105061/tlogo/bbr/"+tricode+".png");
 
 
                                 } catch (JSONException e) {
@@ -173,6 +196,7 @@ public class EquiposFragment extends Fragment {
     }
 
     public void nombresRoster(String id){
+
         JsonObjectRequest requestNombresRoster = new JsonObjectRequest(Request.Method.GET, urlJug, null,
                 new Response.Listener<JSONObject>() {
                     @Override
@@ -187,12 +211,20 @@ public class EquiposFragment extends Fragment {
                                 JSONObject jugador = dataArray.getJSONObject(i);
 
                                 if(jugador.getString("personId").toLowerCase().equals(id)){
-                                    String temporaryDisplayName = jugador.getString("temporaryDisplayName");
-                                    arrayJugadoresRoster.add(temporaryDisplayName);
-                                }
-                            }
-                            rosterEquipo.setText(arrayJugadoresRoster.toString());
+                                    temporaryDisplayName = jugador.getString("temporaryDisplayName");
+                                    jersey = jugador.getString("jersey");
+                                    pos = jugador.getString("pos");
+                                    nbaDebutYear = jugador.getString("nbaDebutYear");
+                                    country = jugador.getString("country");
 
+                                    players.add(new JugadoresList(temporaryDisplayName, jersey, pos, nbaDebutYear, country));
+                                    //arrayJugadoresRoster.add(temporaryDisplayName);
+                                }
+
+                            }
+                            //rosterEquipo.setText(arrayJugadoresRoster.toString());
+                            JugadoresAdapter playersAdapter = new JugadoresAdapter(players);
+                            recycler.setAdapter(playersAdapter);
 
                         } catch (JSONException e) {
                             e.printStackTrace();

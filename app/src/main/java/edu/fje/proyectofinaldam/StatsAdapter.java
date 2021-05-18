@@ -72,7 +72,7 @@ public class StatsAdapter extends RecyclerView.Adapter<StatsAdapter.ViewHolder> 
         void bindData (StatsList item){
             seasonYear.setText(item.getSeasonYear());
             gamesPlayed.setText(item.getGamesPlayed());
-            mpg.setText(item.getGamesPlayed());
+            mpg.setText(item.getMpg());
             ppg.setText(item.getPpg());
             rpg.setText(item.getRpg());
             apg.setText(item.getApg());
