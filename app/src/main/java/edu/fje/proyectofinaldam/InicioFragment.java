@@ -54,6 +54,9 @@ public class InicioFragment extends Fragment {
     public ImageView fotoJugadorFavorito;
     public ImageView fotoEquipoFavorito;
 
+    public TextView email;
+    public String user;
+
     private FirebaseAuth mAuth;
     private DatabaseReference mDatabase;
 
@@ -89,6 +92,7 @@ public class InicioFragment extends Fragment {
         statsJugadorFavorito = view.findViewById(R.id.textViewStatsJugadorFav);
         fotoJugadorFavorito = view.findViewById(R.id.imageViewJugadorFav);
         fotoEquipoFavorito = view.findViewById(R.id.imageViewEquipoFav);
+        email = view.findViewById(R.id.textViewEmail);
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -107,10 +111,12 @@ public class InicioFragment extends Fragment {
             public void onDataChange(@NonNull DataSnapshot snapshot) {
                 jugadorFav = snapshot.child("jugadorFavorito").getValue().toString().toLowerCase();
                 equipoFav = snapshot.child("equipoFavorito").getValue().toString().toLowerCase();
+                user = snapshot.child("email").getValue().toString().toLowerCase();
                 //emailUsuario.setText(user);
                 jugadorFavorito.setText(jugadorFav);
                 equipoFavorito.setText(equipoFav);
                 separarContenidoBuscador(jugadorFav);
+
             }
 
             @Override

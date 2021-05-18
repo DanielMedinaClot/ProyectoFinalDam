@@ -16,9 +16,11 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.android.volley.Request;
@@ -57,6 +59,7 @@ public class JugadoresFragment extends Fragment {
     public EditText buscadorJugadores;
     public Button buscarJugador;
     public ImageView fotoJugadorBuscado;
+
 
     RequestQueue queue;
 
@@ -116,6 +119,7 @@ public class JugadoresFragment extends Fragment {
         buscarJugador = view.findViewById(R.id.btnBuscarJugador);
         fotoJugadorBuscado = view.findViewById(R.id.imageViewJugadorBuscado);
         statsJugadorBuscado = view.findViewById(R.id.textViewStatsJugadorBuscado);
+
 
         recycler = view.findViewById(R.id.recyclerViewStatsJugadorBuscado);
         recycler.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL,false));
@@ -192,6 +196,8 @@ public class JugadoresFragment extends Fragment {
 
                                 for(int i=0; i<dataArray.length();i++){
                                     JSONObject jugador = dataArray.getJSONObject(i);
+
+
 
                                     if(jugador.getString("lastName").toLowerCase().equals(apellido) && jugador.getString("firstName").toLowerCase().equals(nombre) || jugador.getString("lastName").toLowerCase().equals(jugadorBuscado) || jugador.getString("firstName").toLowerCase().equals(jugadorBuscado)){
                                         pruebaJugadores.setText(dataArray.getString(i));

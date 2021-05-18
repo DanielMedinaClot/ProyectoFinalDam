@@ -32,10 +32,11 @@
 
     <ImageView
         android:id="@+id/imageViewJugadorBuscado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="220dp"
+        android:layout_height="160dp"
         tools:src="@tools:sample/avatars"
-        android:layout_marginTop="90dp"/>
+        android:layout_marginTop="90dp"
+        android:scaleType="fitXY"/>
 
     <TextView
         android:id="@+id/textViewStatsJugadorBuscado"
@@ -50,6 +51,7 @@
         android:layout_height="match_parent"
         android:layout_marginTop="400dp"
         />
+
 
 
 </FrameLayout>
