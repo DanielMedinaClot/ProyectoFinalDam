@@ -2,93 +2,169 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <RelativeLayout
+    app:cardBackgroundColor="@color/fondoTabla">
+
+
+
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+
             android:orientation="horizontal"
-            android:padding="6dp">
+            android:padding="-1dp"
+            android:backgroundTint="@color/fondoTabla">
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="4dp"
-                android:paddingLeft="150dp"
-                android:orientation="vertical">
+            <TextView
+                android:id="@+id/textViewStatsSeasonYear"
+                android:layout_width="43dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="6dp"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/back"
+                android:gravity="center"
+                android:text="Season"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/textViewStatsSeasonYear"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Season Year"/>
+            <TextView
+                android:id="@+id/textViewStatsGamesPlayed"
+                android:layout_width="31dp"
+                android:layout_height="30dp"
+                android:layout_marginStart="2dp"
+                android:layout_marginTop="5dp"
+                app:layout_constraintStart_toEndOf="@+id/textViewStatsSeasonYear"
+                app:layout_constraintTop_toTopOf="parent"
+                android:background="@drawable/back"
+                android:gravity="center"
+                android:text="Games Played"
+                 />
 
-                <TextView
-                    android:id="@+id/textViewStatsGamesPlayed"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Games Played"/>
+                        <TextView
+                            android:id="@+id/textViewStatsMPG"
+                            android:layout_width="31dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="5dp"
+                            app:layout_constraintStart_toEndOf="@+id/textViewStatsGamesPlayed"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:background="@drawable/back"
+                            android:gravity="center"
+                            android:text="Minutes Per Game" />
 
-                <TextView
-                    android:id="@+id/textViewStatsMPG"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Minutes Per Game"/>
+                        <TextView
+                            android:id="@+id/textViewStatsPPG"
+                            android:layout_width="31dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="5dp"
+                            app:layout_constraintStart_toEndOf="@+id/textViewStatsMPG"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:background="@drawable/back"
+                            android:gravity="center"
+                            android:text="Points Per Game" />
 
-                <TextView
-                    android:id="@+id/textViewStatsPPG"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Points Per Game"/>
-                <TextView
-                    android:id="@+id/textViewStatsRPG"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Rebounds Per Game"/>
-                <TextView
-                    android:id="@+id/textViewStatsAPG"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Assists Per Game"/>
-                <TextView
-                    android:id="@+id/textViewStatsSPG"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Steals Per Game"/>
-                <TextView
-                    android:id="@+id/textViewStatsBPG"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Blocks Per Game"/>
-                <TextView
-                    android:id="@+id/textViewStatsTOPG"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Turnovers Per Game"/>
-                <TextView
-                    android:id="@+id/textViewStatsFGP"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Field Goal Percentage"/>
-                <TextView
-                    android:id="@+id/textViewStatsTPP"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Three Point Percentage"/>
-                <TextView
-                    android:id="@+id/textViewStatsFTP"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Free Throw Percentage"/>
+                        <TextView
+                            android:id="@+id/textViewStatsRPG"
+                            android:layout_width="31dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="5dp"
+                            app:layout_constraintStart_toEndOf="@+id/textViewStatsPPG"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:background="@drawable/back"
+                            android:gravity="center"
+                            android:text="Rebounds Per Game" />
 
-            </LinearLayout>
-        </RelativeLayout>
-    </LinearLayout>
+                        <TextView
+                            android:id="@+id/textViewStatsAPG"
+                            android:layout_width="31dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="5dp"
+                            app:layout_constraintStart_toEndOf="@+id/textViewStatsRPG"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:background="@drawable/back"
+                            android:gravity="center"
+                            android:text="Assists Per Game" />
 
-</androidx.cardview.widget.CardView>
+                        <TextView
+                            android:id="@+id/textViewStatsSPG"
+                            android:layout_width="31dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="5dp"
+                            app:layout_constraintStart_toEndOf="@+id/textViewStatsAPG"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:background="@drawable/back"
+                            android:gravity="center"
+                            android:text="Steals Per Game" />
+
+                        <TextView
+                            android:id="@+id/textViewStatsBPG"
+                            android:layout_width="31dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="5dp"
+                            app:layout_constraintStart_toEndOf="@+id/textViewStatsSPG"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:background="@drawable/back"
+                            android:gravity="center"
+                            android:text="Blocks Per Game" />
+
+                        <TextView
+                            android:id="@+id/textViewStatsTOPG"
+                            android:layout_width="31dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="5dp"
+                            app:layout_constraintStart_toEndOf="@+id/textViewStatsBPG"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:background="@drawable/back"
+                            android:gravity="center"
+                            android:text="Turnovers Per Game" />
+
+                        <TextView
+                            android:id="@+id/textViewStatsFGP"
+                            android:layout_width="31dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="5dp"
+                            app:layout_constraintStart_toEndOf="@+id/textViewStatsTOPG"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:background="@drawable/back"
+                            android:gravity="center"
+                            android:text="Field Goal Percentage" />
+
+                        <TextView
+                            android:id="@+id/textViewStatsTPP"
+                            android:layout_width="31dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="5dp"
+                            app:layout_constraintStart_toEndOf="@+id/textViewStatsFGP"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:background="@drawable/back"
+                            android:gravity="center"
+                            android:text="Three Point Percentage" />
+
+                        <TextView
+                            android:id="@+id/textViewStatsFTP"
+                            android:layout_width="31dp"
+                            android:layout_height="30dp"
+                            android:layout_marginStart="2dp"
+                            android:layout_marginTop="5dp"
+                            app:layout_constraintStart_toEndOf="@+id/textViewStatsTPP"
+                            app:layout_constraintTop_toTopOf="parent"
+                            android:background="@drawable/back"
+                            android:gravity="center"
+                            android:text="Free Throw Percentage" />
+
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+            </androidx.cardview.widget.CardView>
