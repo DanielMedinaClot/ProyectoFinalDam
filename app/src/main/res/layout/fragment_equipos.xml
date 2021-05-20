@@ -7,11 +7,13 @@
     tools:context=".EquiposFragment">
 
     <!-- TODO: Update blank fragment layout -->
+
     <TextView
         android:id="@+id/textViewEquipos"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="190dp"
+        android:layout_width="120dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="200dp"
         android:text="@string/hello_blank_fragment" />
 
     <EditText
@@ -31,12 +33,101 @@
         android:text="Button"
         />
 
-    <TextView
-        android:id="@+id/textViewRosterEquipo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="300dp"
-        android:text="TextView" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="70dp"
+        android:layout_marginTop="330dp">
+
+
+        <TextView
+            android:id="@+id/labelRosterName"
+            android:layout_width="146dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="2dp"
+            android:background="@drawable/back_label"
+            android:text="JUGADOR"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/labelRosterPos"
+            app:layout_constraintStart_toEndOf="@+id/labelRosterJersey"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/labelRosterJersey"
+            android:layout_width="46dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="2dp"
+            android:background="@drawable/back_label"
+            android:gravity="center"
+            android:text="NUM"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/labelRosterName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/labelRosterPos"
+            android:layout_width="31dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="2dp"
+            android:background="@drawable/back_label"
+            android:gravity="center"
+            android:text="POS"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/labelRosterNbaDebut"
+            app:layout_constraintStart_toEndOf="@+id/labelRosterName"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/labelRosterNbaDebut"
+
+            android:layout_width="41dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="2dp"
+            android:background="@drawable/back_label"
+            android:gravity="center"
+            android:text="AÑO"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toStartOf="@+id/labelRosterCountry"
+            app:layout_constraintStart_toEndOf="@+id/labelRosterPos"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/labelRosterCountry"
+            android:layout_width="107dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="2dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/back_label"
+            android:text="PAÍS"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/labelRosterNbaDebut"
+
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="157dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="13dp"
+            android:layout_marginTop="6dp"
+            android:textSize="20dp"
+            android:textStyle="bold"
+            android:text="PLANTILLA"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerViewEquipoRoster"
@@ -47,9 +138,11 @@
 
     <ImageView
         android:id="@+id/imageViewFotoEquipo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="60dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginLeft="16dp"
+        android:scaleType="fitXY"
         tools:src="@tools:sample/avatars" />
 
 </FrameLayout>

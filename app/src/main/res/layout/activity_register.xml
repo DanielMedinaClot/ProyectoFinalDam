@@ -12,11 +12,13 @@
         android:layout_height="wrap_content"
         android:onClick="jugar"
         android:text="Jugar"
+        android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        android:enabled="false"
         app:layout_constraintVertical_bias="0.9" />
 
     <EditText
@@ -24,6 +26,7 @@
         android:layout_width="379dp"
         android:layout_height="44dp"
         android:hint="Usuario"
+        android:inputType="textEmailAddress"
         app:layout_constraintBottom_toTopOf="@+id/iniciarApp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,6 +38,7 @@
         android:layout_width="379dp"
         android:layout_height="44dp"
         android:hint="Contraseña"
+        android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/iniciarApp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

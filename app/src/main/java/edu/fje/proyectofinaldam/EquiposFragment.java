@@ -40,10 +40,12 @@ public class EquiposFragment extends Fragment {
     public ImageView fotoEquipo;
     public ArrayList<String> arrayJugadoresRoster = new ArrayList<String>();
 
-    String jugadorBuscado;
-    String nombre;
-    String apellido;
+
     String teamId;
+    String city;
+    String fullName;
+    String confName;
+    String divName;
 
     RequestQueue queue;
 
@@ -55,8 +57,6 @@ public class EquiposFragment extends Fragment {
     //JSONArray leagueArray;
 
     String equipoBuscado;
-    String city;
-    String fullName;
     String urlName;
     String tricode;
 
@@ -85,7 +85,7 @@ public class EquiposFragment extends Fragment {
         pruebaEquipos = view.findViewById(R.id.textViewEquipos);
         buscadorEquipos = view.findViewById(R.id.editTextBuscarEquipo);
         buscarEquipo = view.findViewById(R.id.btnBuscarEquipo);
-        rosterEquipo = view.findViewById(R.id.textViewRosterEquipo);
+        //rosterEquipo = view.findViewById(R.id.textViewRosterEquipo);
         fotoEquipo = view.findViewById(R.id.imageViewFotoEquipo);
 
         recycler = view.findViewById(R.id.recyclerViewEquipoRoster);
