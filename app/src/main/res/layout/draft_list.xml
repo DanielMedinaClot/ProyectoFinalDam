@@ -2,86 +2,202 @@
 <androidx.cardview.widget.CardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-        <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="horizontal"
-            android:padding="6dp">
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="411dp"
+        android:background="@drawable/back"
+        android:layout_height="360dp">
 
-            <ImageView
-                android:id="@+id/imageViewDraftHeadshot"
-                android:layout_width="110dp"
-                android:layout_height="130dp"
-                android:layout_alignParentStart="true"
-                android:layout_alignParentLeft="true"
-                android:layout_gravity="center"
-                android:layout_marginStart="2dp"
-                android:layout_marginLeft="2dp"
-                android:paddingLeft="14dp"
-                android:paddingRight="14dp">
 
-            </ImageView>
+        <ImageView
+            android:id="@+id/imageViewDraftHeadshot"
+            android:layout_width="155dp"
+            android:layout_height="129dp"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="84dp"
+            android:paddingLeft="14dp"
+            android:paddingRight="14dp"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <LinearLayout
-                android:id="@+id/linearLayout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_alignParentTop="true"
-                android:layout_marginStart="4dp"
-                android:paddingLeft="150dp"
-                android:orientation="vertical">
+        </ImageView>
 
-                <TextView
-                    android:id="@+id/textViewDraftProspect"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="DraftProspect"/>
+        <TextView
+            android:id="@+id/textViewDraftProspect"
+            android:layout_width="170dp"
+            android:layout_height="25dp"
+            android:text="DraftProspect"
+            android:layout_marginTop="116dp"
+            android:layout_marginStart="212dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:id="@+id/textViewDraftNumber"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="DraftNumber"/>
+        <TextView
+            android:id="@+id/textViewDraftNumber"
+            android:layout_width="75dp"
+            android:layout_height="46dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginEnd="58dp"
+            android:layout_marginBottom="6dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="1"
+            android:textSize="40dp"
+            app:layout_constraintBottom_toTopOf="@+id/imageViewDraftHeadshot"
+            app:layout_constraintEnd_toStartOf="@+id/textViewDraftTeam"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
 
-                <TextView
-                    android:id="@+id/textViewDraftTeam"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="DraftTeam"/>
-                <TextView
-                    android:id="@+id/textViewDraftPosition"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="DraftPosition"/>
-                <TextView
-                    android:id="@+id/textViewDraftCollege"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="DraftCollege"/>
-                <TextView
-                    android:id="@+id/textViewDraftCountry"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="Country"/>
-                <TextView
-                    android:id="@+id/textViewDraftHeight"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="DraftHeight"/>
-                <TextView
-                    android:id="@+id/textViewDraftWeight"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:text="DraftWeight"/>
+        <TextView
+            android:id="@+id/textViewDraftTeam"
+            android:layout_width="289dp"
+            android:layout_height="34dp"
+            android:layout_marginStart="104dp"
+            android:layout_marginTop="28dp"
+            android:gravity="center"
+            android:textStyle="bold"
+            android:text="DraftTeam"
+            android:textSize="24dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
-            </LinearLayout>
-        </RelativeLayout>
-    </LinearLayout>
+        <TextView
+            android:id="@+id/textViewDraftPosition"
+            android:layout_width="170dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="212dp"
+            android:layout_marginBottom="25dp"
+            android:text="DraftPosition"
+            app:layout_constraintBottom_toTopOf="@+id/textView5"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewDraftCollege"
+            android:layout_width="170dp"
+            android:layout_height="25dp"
+            android:layout_marginBottom="4dp"
+            android:text="DraftCollege"
+            app:layout_constraintBottom_toTopOf="@+id/textView7"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginStart="212dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintVertical_bias="0.984"
+            tools:layout_editor_absoluteX="212dp" />
+
+        <TextView
+            android:id="@+id/textViewDraftCountry"
+            android:layout_width="103dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginBottom="8dp"
+            android:text="Country"
+            app:layout_constraintBottom_toTopOf="@+id/textView6"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewDraftHeight"
+            android:layout_width="103dp"
+            android:layout_height="25dp"
+            android:layout_marginStart="56dp"
+            android:layout_marginBottom="16dp"
+            android:text="DraftHeight"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewDraftWeight"
+            android:layout_width="170dp"
+            android:layout_height="25dp"
+
+            android:layout_marginBottom="16dp"
+            android:text="DraftWeight"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginStart="212dp"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="212dp"
+            android:layout_marginTop="84dp"
+            android:layout_marginBottom="4dp"
+            android:textStyle="bold"
+            android:text="NOMBRE"
+            app:layout_constraintBottom_toTopOf="@+id/textViewDraftProspect"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="212dp"
+            android:layout_marginTop="156dp"
+            android:layout_marginBottom="4dp"
+            android:textStyle="bold"
+            android:text="POSICIÓN"
+            app:layout_constraintBottom_toTopOf="@+id/textViewDraftPosition"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0" />
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:layout_marginBottom="4dp"
+            android:textStyle="bold"
+            android:text="PAÍS"
+            app:layout_constraintBottom_toTopOf="@+id/textViewDraftCountry"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="170dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="4dp"
+            android:text="COLEGIO/UNIVERSIDAD"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textViewDraftCollege"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="56dp"
+            android:layout_marginBottom="4dp"
+            android:textStyle="bold"
+            android:text="ALTURA"
+            app:layout_constraintBottom_toTopOf="@+id/textViewDraftHeight"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/textView7"
+            android:layout_width="170dp"
+            android:layout_height="25dp"
+            android:layout_marginEnd="28dp"
+            android:layout_marginBottom="4dp"
+            android:text="PESO"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textViewDraftWeight"
+            app:layout_constraintEnd_toEndOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </androidx.cardview.widget.CardView>
