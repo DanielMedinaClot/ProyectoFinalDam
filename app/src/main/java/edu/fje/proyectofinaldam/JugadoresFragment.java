@@ -60,6 +60,8 @@ public class JugadoresFragment extends Fragment {
     public Button buscarJugador;
     public ImageView fotoJugadorBuscado;
 
+    public TextView jugadoresTemporaryDisplayName, jugadoresJersey, jugadoresPos, jugadoresHeightMeters, jugadoresWeightKilograms, jugadoresDateOfBirth, jugadoresCountry, jugadoresCollegeName, jugadoresNbaDebutYear;
+
 
     RequestQueue queue;
 
@@ -114,11 +116,21 @@ public class JugadoresFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        pruebaJugadores = view.findViewById(R.id.textViewJugadores);
+        //pruebaJugadores = view.findViewById(R.id.textViewJugadores);
         buscadorJugadores = view.findViewById(R.id.editTextBuscarJugador);
         buscarJugador = view.findViewById(R.id.btnBuscarJugador);
         fotoJugadorBuscado = view.findViewById(R.id.imageViewJugadorBuscado);
         statsJugadorBuscado = view.findViewById(R.id.textViewStatsJugadorBuscado);
+
+        jugadoresTemporaryDisplayName = view.findViewById(R.id.textViewJugadoresNombre);
+        jugadoresJersey = view.findViewById(R.id.textViewJugadoresJersey);
+        jugadoresPos = view.findViewById(R.id.textViewJugadoresPos);
+        jugadoresHeightMeters = view.findViewById(R.id.textViewJugadoresHeight);
+        jugadoresWeightKilograms = view.findViewById(R.id.textViewJugadoresWeight);
+        jugadoresDateOfBirth = view.findViewById(R.id.textViewJugadoresDateOfBirth);
+        jugadoresCountry = view.findViewById(R.id.textViewJugadoresCountry);
+        jugadoresCollegeName = view.findViewById(R.id.textViewJugadoresCollege);
+        jugadoresNbaDebutYear = view.findViewById(R.id.textViewJugadoresNbaDebut);
 
 
         recycler = view.findViewById(R.id.recyclerViewStatsJugadorBuscado);
@@ -200,7 +212,7 @@ public class JugadoresFragment extends Fragment {
 
 
                                     if(jugador.getString("lastName").toLowerCase().equals(apellido) && jugador.getString("firstName").toLowerCase().equals(nombre) || jugador.getString("lastName").toLowerCase().equals(jugadorBuscado) || jugador.getString("firstName").toLowerCase().equals(jugadorBuscado)){
-                                        pruebaJugadores.setText(dataArray.getString(i));
+                                        //pruebaJugadores.setText(dataArray.getString(i));
 
                                         temporaryDisplayName = jugador.getString("temporaryDisplayName");
                                         jersey = jugador.getString("jersey");
@@ -221,6 +233,16 @@ public class JugadoresFragment extends Fragment {
                                          */
                                         collegeName = jugador.getString("collegeName");
                                         nbaDebutYear = jugador.getString("nbaDebutYear");
+
+                                        jugadoresTemporaryDisplayName.setText(temporaryDisplayName);
+                                        jugadoresJersey.setText(jersey);
+                                        jugadoresPos.setText(pos);
+                                        jugadoresHeightMeters.setText(heightMeters);
+                                        jugadoresWeightKilograms.setText(weightKilograms);
+                                        jugadoresDateOfBirth.setText(dateOfBirth);
+                                        jugadoresCountry.setText(country);
+                                        jugadoresCollegeName.setText(collegeName);
+                                        jugadoresNbaDebutYear.setText(nbaDebutYear);
 
                                     }
 

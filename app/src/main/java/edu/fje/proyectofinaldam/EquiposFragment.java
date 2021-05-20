@@ -136,22 +136,19 @@ public class EquiposFragment extends Fragment {
                                             divNameEquipo.setText(divName);
 
                                             rosterEquipoBuscado(teamId);
+                                            if(tricode.equals("BKN")){
+                                                tricode = "NJN";
+                                            }else if(tricode.equals("NOP")){
+                                                tricode = "NOH";
+                                            }else if(tricode.equals("PHX")){
+                                                tricode = "PHO";
+                                            }
                                         }
 
                                         //pruebaJugadores.setText(jugador.toString());
                                     }
 
-
-
-                                    if(tricode.equals("BKN")){
-                                        tricode = "NJN";
-                                    }else if(tricode.equals("NOP")){
-                                        tricode = "NOH";
-                                    }else if(tricode.equals("PHX")){
-                                        tricode = "PHO";
-                                    }
                                     new DownloadImageTask(fotoEquipo).execute("https://d2p3bygnnzw9w3.cloudfront.net/req/202105061/tlogo/bbr/"+tricode+".png");
-
 
                                 } catch (JSONException e) {
                                     e.printStackTrace();

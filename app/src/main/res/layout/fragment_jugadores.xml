@@ -9,14 +9,119 @@
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
-        android:id="@+id/textViewJugadores"
-        android:layout_width="186dp"
-        android:layout_height="304dp"
-        android:layout_marginStart="220dp"
-        android:layout_marginTop="60dp"
-        android:text="@string/hello_blank_fragment"
+        android:id="@+id/textViewJugadoresJersey"
+        android:layout_width="61dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="352dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadoresWeight"
+        android:layout_width="61dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="352dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadoresCollege"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="352dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labelJugadoresNombre"
+        android:layout_width="188dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="230dp"
+        android:layout_marginTop="60dp"
+        android:text="NOMBRE JUGADOR"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadoresNombre"
+        android:layout_width="188dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="230dp"
+        android:layout_marginTop="90dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadoresPos"
+        android:layout_width="86dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="284dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadoresHeight"
+        android:layout_width="61dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="284dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadoresCountry"
+        android:layout_width="150dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="284dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labelJugadoresDateOfBirth"
+        android:layout_width="188dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="230dp"
+        android:layout_marginTop="120dp"
+        android:text="FECHA NACIMIENTO"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadoresDateOfBirth"
+        android:layout_width="188dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="230dp"
+        android:layout_marginTop="150dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labelJugadoresNbaDebut"
+        android:layout_width="188dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="230dp"
+        android:layout_marginTop="180dp"
+        android:text="DEBUT NBA"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadoresNbaDebut"
+        android:layout_width="188dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="230dp"
+        android:layout_marginTop="210dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
 
     <EditText
         android:id="@+id/editTextBuscarJugador"
@@ -33,17 +138,18 @@
         android:layout_height="55dp"
         android:layout_marginStart="348dp"
         android:layout_marginBottom="666dp"
-        android:text="Button"
+        android:drawableLeft="@drawable/outline_search_24"
+        android:gravity="center"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        />
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageViewJugadorBuscado"
-        android:layout_width="220dp"
-        android:layout_height="160dp"
+        android:layout_width="206dp"
+        android:layout_height="175dp"
+        android:layout_marginLeft="5dp"
         android:layout_marginTop="60dp"
         android:scaleType="fitXY"
         app:layout_constraintStart_toStartOf="parent"
@@ -67,8 +173,8 @@
         android:layout_marginTop="400dp"
         android:background="@drawable/back_label"
         android:gravity="center"
-        android:textColor="@color/white"
         android:text="Año"
+        android:textColor="@color/white"
         android:textSize="12sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -110,8 +216,8 @@
         android:background="@drawable/back_label"
         android:gravity="center"
         android:text="PPG"
-        android:textSize="12sp"
         android:textColor="@color/white"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/labelStatsMPG"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -124,8 +230,8 @@
         android:background="@drawable/back_label"
         android:gravity="center"
         android:text="RPP"
-        android:textSize="12sp"
         android:textColor="@color/white"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/labelStatsPPG"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -180,8 +286,8 @@
         android:background="@drawable/back_label"
         android:gravity="center"
         android:text="PÉR"
-        android:textSize="12sp"
         android:textColor="@color/white"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/labelStatsBPG"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -194,8 +300,8 @@
         android:background="@drawable/back_label"
         android:gravity="center"
         android:text="%TC"
-        android:textSize="12sp"
         android:textColor="@color/white"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/labelStatsTOPG"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -208,8 +314,8 @@
         android:background="@drawable/back_label"
         android:gravity="center"
         android:text="%3P"
-        android:textSize="12sp"
         android:textColor="@color/white"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/labelStatsFGP"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -222,8 +328,8 @@
         android:background="@drawable/back_label"
         android:gravity="center"
         android:text="%TL"
-        android:textSize="12sp"
         android:textColor="@color/white"
+        android:textSize="12sp"
         app:layout_constraintStart_toEndOf="@+id/labelStatsTPP"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -232,8 +338,73 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="435dp"
-        android:layout_marginBottom="20dp"
-        android:background="@drawable/back_label"/>
+        android:layout_marginBottom="20dp" />
+
+    <TextView
+        android:id="@+id/textView10"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginBottom="5dp"
+        android:text="POSICIÓN"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textViewJugadoresPos"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView11"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="323dp"
+        android:text="NÚM"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView12"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="260dp"
+        android:text="ALTURA"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView13"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="150dp"
+        android:layout_marginTop="323dp"
+        android:text="PESO"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="260dp"
+        android:text="PAÍS"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="240dp"
+        android:layout_marginTop="323dp"
+        android:text="COLEGIO/UNIVERSIDAD"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
