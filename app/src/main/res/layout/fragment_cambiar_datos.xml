@@ -1,47 +1,65 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".CambiarDatosFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <EditText
-        android:id="@+id/editTextPasswordAntiguo"
-        android:layout_width="340dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="100dp"
-        android:hint="Password Antigua"
-        />
-    <EditText
-        android:id="@+id/editTextPasswordNueva"
-        android:layout_width="340dp"
-        android:layout_height="44dp"
-        android:layout_marginTop="200dp"
-        android:hint="Password nueva"
-        />
+
 
     <EditText
         android:id="@+id/editTextNuevoJugadorFavorito"
         android:layout_width="340dp"
         android:layout_height="44dp"
-        android:layout_marginTop="300dp"
-        android:hint="Nombre del Jugador" />
-
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="120dp"
+        android:hint="Nombre del Jugador"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
         android:id="@+id/editTextNuevoEquipoFavorito"
         android:layout_width="340dp"
         android:layout_height="44dp"
-        android:layout_marginTop="400dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginTop="236dp"
         android:hint="Nombre del equipo"
-        />
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btnCambiarDatos"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="500dp"
-        android:text="Button" />
+        android:layout_width="139dp"
+        android:layout_height="59dp"
+        android:layout_marginStart="132dp"
+        android:layout_marginTop="344dp"
+        android:text="CAMBIAR DATOS"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="250dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="25dp"
+        android:text="NUEVO EQUIPO FAVORITO"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNuevoEquipoFavorito"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="250dp"
+        android:layout_height="25dp"
+        android:layout_marginStart="32dp"
+        android:layout_marginBottom="25dp"
+        android:text="NUEVO JUGADOR FAVORITO"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/editTextNuevoJugadorFavorito"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

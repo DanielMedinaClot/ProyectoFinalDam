@@ -9,12 +9,67 @@
     <!-- TODO: Update blank fragment layout -->
 
     <TextView
-        android:id="@+id/textViewEquipos"
-        android:layout_width="120dp"
+        android:id="@+id/labelEquipos"
+        android:layout_width="196dp"
         android:layout_height="25dp"
-        android:layout_marginTop="100dp"
         android:layout_marginLeft="200dp"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_marginTop="100dp"
+        android:textStyle="bold"
+        android:text="NOMBRE EQUIPO" />
+
+    <TextView
+        android:id="@+id/textViewFullName"
+        android:layout_width="196dp"
+        android:layout_height="25dp"
+        android:layout_marginLeft="200dp"
+        android:layout_marginTop="130dp"
+        android:text="" />
+    <TextView
+        android:id="@+id/labelCity"
+        android:layout_width="196dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="160dp"
+        android:layout_marginLeft="200dp"
+        android:textStyle="bold"
+        android:text="CIUDAD" />
+    <TextView
+        android:id="@+id/textViewCity"
+        android:layout_width="196dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="190dp"
+        android:layout_marginLeft="200dp"
+        android:text="" />
+    <TextView
+        android:id="@+id/labelConfName"
+        android:layout_width="196dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="220dp"
+        android:layout_marginLeft="200dp"
+        android:textStyle="bold"
+        android:text="CONFERENCIA" />
+    <TextView
+        android:id="@+id/textViewConfName"
+        android:layout_width="196dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="250dp"
+        android:layout_marginLeft="200dp"
+        android:text="" />
+    <TextView
+        android:id="@+id/labelDivName"
+        android:layout_width="196dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="280dp"
+        android:layout_marginLeft="200dp"
+        android:textStyle="bold"
+        android:text="DIVISIÓN" />
+    <TextView
+        android:id="@+id/textViewDivName"
+        android:layout_width="196dp"
+        android:layout_height="25dp"
+        android:layout_marginTop="310dp"
+        android:layout_marginLeft="200dp"
+        android:text="" />
+
 
     <EditText
         android:id="@+id/editTextBuscarEquipo"
@@ -48,6 +103,7 @@
             android:layout_marginEnd="2dp"
             android:background="@drawable/back_label"
             android:text="JUGADOR"
+            android:gravity="center"
             android:textColor="@color/white"
             app:layout_constraintEnd_toStartOf="@+id/labelRosterPos"
             app:layout_constraintStart_toEndOf="@+id/labelRosterJersey"
@@ -108,6 +164,7 @@
             android:layout_marginEnd="16dp"
             android:background="@drawable/back_label"
             android:text="PAÍS"
+            android:gravity="center"
             android:textColor="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/labelRosterNbaDebut"

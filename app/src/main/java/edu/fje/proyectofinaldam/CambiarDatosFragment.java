@@ -67,8 +67,8 @@ public class CambiarDatosFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        antiguaPassword = view.findViewById(R.id.editTextPasswordAntiguo);
-        nuevaPassword = view.findViewById(R.id.editTextPasswordNueva);
+        //antiguaPassword = view.findViewById(R.id.editTextPasswordAntiguo);
+        //nuevaPassword = view.findViewById(R.id.editTextPasswordNueva);
         nuevoJugadorFavorito = view.findViewById(R.id.editTextNuevoJugadorFavorito);
         nuevoEquipoFavorito = view.findViewById(R.id.editTextNuevoEquipoFavorito);
         btnCambiarDatos = view.findViewById(R.id.btnCambiarDatos);

@@ -46,6 +46,7 @@ public class EquiposFragment extends Fragment {
     String fullName;
     String confName;
     String divName;
+    public TextView cityEquipo, fullNameEquipo, confNameEquipo, divNameEquipo;
 
     RequestQueue queue;
 
@@ -82,7 +83,11 @@ public class EquiposFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        pruebaEquipos = view.findViewById(R.id.textViewEquipos);
+        //pruebaEquipos = view.findViewById(R.id.textViewEquipos);
+        cityEquipo = view.findViewById(R.id.textViewCity);
+        fullNameEquipo = view.findViewById(R.id.textViewFullName);
+        confNameEquipo = view.findViewById(R.id.textViewConfName);
+        divNameEquipo = view.findViewById(R.id.textViewDivName);
         buscadorEquipos = view.findViewById(R.id.editTextBuscarEquipo);
         buscarEquipo = view.findViewById(R.id.btnBuscarEquipo);
         //rosterEquipo = view.findViewById(R.id.textViewRosterEquipo);
@@ -116,14 +121,28 @@ public class EquiposFragment extends Fragment {
                                         JSONObject equipo = dataArray.getJSONObject(i);
 
                                         if(equipo.getString("urlName").toLowerCase().equals(equipoBuscado) || equipo.getString("city").toLowerCase().equals(equipoBuscado) || equipo.getString("fullName").toLowerCase().equals(equipoBuscado)){
-                                            pruebaEquipos.setText(dataArray.getString(i));
+                                            //pruebaEquipos.setText(dataArray.getString(i));
                                             teamId = equipo.getString("teamId");
                                             tricode = equipo.getString("tricode");
+
+                                            city = equipo.getString("city");
+                                            fullName = equipo.getString("fullName");
+                                            confName = equipo.getString("confName");
+                                            divName = equipo.getString("divName");
+
+                                            cityEquipo.setText(city);
+                                            fullNameEquipo.setText(fullName);
+                                            confNameEquipo.setText(confName);
+                                            divNameEquipo.setText(divName);
+
                                             rosterEquipoBuscado(teamId);
                                         }
 
                                         //pruebaJugadores.setText(jugador.toString());
                                     }
+
+
+
                                     if(tricode.equals("BKN")){
                                         tricode = "NJN";
                                     }else if(tricode.equals("NOP")){
