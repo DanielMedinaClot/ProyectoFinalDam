@@ -147,7 +147,7 @@
 
     <ImageView
         android:id="@+id/imageViewJugadorBuscado"
-        android:layout_width="206dp"
+        android:layout_width="212dp"
         android:layout_height="175dp"
         android:layout_marginLeft="5dp"
         android:layout_marginTop="60dp"

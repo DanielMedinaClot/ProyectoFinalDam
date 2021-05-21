@@ -6,64 +6,738 @@
     android:layout_height="match_parent"
     tools:context=".InicioFragment">
 
-    <TextView
-        android:id="@+id/textViewUsuario"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="60dp"
-        android:text="Usuario"
-        app:layout_constraintStart_toStartOf="parent"
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="2dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="2dp"
+        app:cardBackgroundColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+
+        <TextView
+            android:id="@+id/textViewJugadorFavorito"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="364dp"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+
+        <ImageView
+            android:id="@+id/imageViewJugadorFav"
+            android:layout_width="193dp"
+            android:layout_height="160dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="340dp"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="340dp"
+            android:text="JUGADOR FAVORITO"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="395dp"
+            android:text="POSICIÓN"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="296dp"
+            android:layout_marginTop="395dp"
+            android:text="NÚMERO"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewJugadorFavoritoPos"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="420dp"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewJugadoresFavoritoJersey"
+            android:layout_width="50dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="296dp"
+            android:layout_marginTop="420dp"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView22"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="458dp"
+            android:text="ALTURA"
+            android:textStyle="bold
+"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewJugadorFavoritoHeight"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="482dp"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView24"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="296dp"
+            android:layout_marginTop="458dp"
+            android:text="PESO"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewJugadorFavoritoWeight"
+            android:layout_width="80dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="296dp"
+            android:layout_marginTop="482dp"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/labelStatsSeasonYear"
+            android:layout_width="43dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="550dp"
+            android:background="@drawable/back_label"
+            android:gravity="center"
+            android:text="Año"
+            android:textColor="@color/white"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+        android:id="@+id/labelStatsGamesPlayed"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="550dp"
+        android:background="@drawable/back_label"
+        android:gravity="center"
+        android:text="PJ"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsSeasonYear"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewEquipoFavorito"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="120dp"
-        android:text="EquipoFavorito"
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/labelStatsMPG"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="83dp"
+        android:layout_marginTop="550dp"
+        android:background="@drawable/back_label"
+        android:gravity="center"
+        android:text="MPP"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsGamesPlayed"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewJugadorFavorito"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="180dp"
-        android:text="JugadorFavorito"
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/labelStatsPPG"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="550dp"
+        android:background="@drawable/back_label"
+        android:gravity="center"
+        android:text="PPG"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsMPG"
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/textViewStatsJugadorFav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="176dp"
-        android:layout_marginTop="379dp"
-        android:text="StatsJugadorFav"
-        app:layout_constraintStart_toStartOf="parent"
+        android:id="@+id/labelStatsRPG"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="149dp"
+        android:layout_marginTop="550dp"
+        android:background="@drawable/back_label"
+        android:gravity="center"
+        android:text="RPP"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsPPG"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageViewJugadorFav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="117dp"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+    <TextView
+        android:id="@+id/labelStatsAPG"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="179dp"
+        android:layout_marginTop="550dp"
+        android:background="@drawable/back_label"
+        android:gravity="center"
+        android:text="APP"
+        android:textColor="@color/white"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsRPG"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <ImageView
-        android:id="@+id/imageViewEquipoFav"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="501dp"
+    <TextView
+        android:id="@+id/labelStatsSPG"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="212dp"
+        android:layout_marginTop="550dp"
+        android:background="@drawable/back_label"
+        android:gravity="center"
+        android:text="SPP"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+
+        app:layout_constraintStart_toEndOf="@+id/labelStatsAPG"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labelStatsBPG"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="245dp"
+        android:layout_marginTop="550dp"
+        android:background="@drawable/back_label"
+        android:gravity="center"
+        android:text="TPP"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsSPG"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labelStatsTOPG"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="278dp"
+        android:layout_marginTop="550dp"
+        android:background="@drawable/back_label"
+        android:gravity="center"
+        android:text="PÉR"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsBPG"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labelStatsFGP"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="311dp"
+        android:layout_marginTop="550dp"
+        android:background="@drawable/back_label"
+        android:gravity="center"
+        android:text="%TC"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsTOPG"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labelStatsTPP"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="344dp"
+        android:layout_marginTop="550dp"
+        android:background="@drawable/back_label"
+        android:gravity="center"
+        android:text="%3P"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsFGP"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/labelStatsFTP"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="377dp"
+        android:layout_marginTop="550dp"
+        android:background="@drawable/back_label"
+        android:gravity="center"
+        android:text="%TL"
+        android:textColor="@color/white"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsTPP"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+        <TextView
+            android:id="@+id/textViewJugadorFavoritoStatsSeasonYear"
+            android:layout_width="43dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="590dp"
+            android:background="@drawable/back"
+            android:gravity="center"
+            android:text="Año"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+        android:id="@+id/textViewJugadorFavoritoStatsGamesPlayed"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="50dp"
+        android:layout_marginTop="590dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="PJ"
+
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsSeasonYear"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadorFavoritoStatsMPG"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="83dp"
+        android:layout_marginTop="590dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="MPP"
+
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsGamesPlayed"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadorFavoritoStatsPPG"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="590dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="PPG"
+
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsMPG"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadorFavoritoStatsRPG"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="149dp"
+        android:layout_marginTop="590dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="RPP"
+
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsPPG"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadorFavoritoStatsAPG"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="179dp"
+        android:layout_marginTop="590dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="APP"
+
+        app:layout_constraintStart_toEndOf="@+id/labelStatsRPG"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadorFavoritoStatsSPG"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="212dp"
+        android:layout_marginTop="590dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="SPP"
+
+        android:textSize="12sp"
+
+        app:layout_constraintStart_toEndOf="@+id/labelStatsAPG"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadorFavoritoStatsBPG"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="245dp"
+        android:layout_marginTop="590dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="TPP"
+
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsSPG"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadorFavoritoStatsTOPG"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="278dp"
+        android:layout_marginTop="590dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="PÉR"
+
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsBPG"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadorFavoritoStatsFGP"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="311dp"
+        android:layout_marginTop="590dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="%TC"
+
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsTOPG"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadorFavoritoStatsTPP"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="344dp"
+        android:layout_marginTop="590dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="%3P"
+
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsFGP"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadorFavoritoStatsFTP"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="377dp"
+        android:layout_marginTop="590dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="%TL"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsTPP"
+        app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewJugadorFavoritoTotStatsSeasonYear"
+            android:layout_width="43dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="5dp"
+            android:layout_marginTop="630dp"
+            android:background="@drawable/back"
+            android:gravity="center"
+            android:text="Año"
+            android:textSize="12sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewJugadorFavoritoTotStatsGamesPlayed"
+            android:layout_width="31dp"
+            android:layout_height="30dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginTop="630dp"
+            android:background="@drawable/back"
+            android:gravity="center"
+            android:text="PJ"
+            android:textSize="12dp"
+
+            app:layout_constraintStart_toEndOf="@+id/labelStatsSeasonYear"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+        android:id="@+id/textViewJugadorFavoritoTotStatsMPG"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="83dp"
+        android:layout_marginTop="630dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="MPP"
+
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsGamesPlayed"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadorFavoritoTotStatsPPG"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="116dp"
+        android:layout_marginTop="630dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="PPG"
+
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsMPG"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadorFavoritoTotStatsRPG"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="149dp"
+        android:layout_marginTop="630dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="RPP"
+
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsPPG"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadorFavoritoTotStatsAPG"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="179dp"
+        android:layout_marginTop="630dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="APP"
+
+        app:layout_constraintStart_toEndOf="@+id/labelStatsRPG"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadorFavoritoTotStatsSPG"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="212dp"
+        android:layout_marginTop="630dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="SPP"
+
+        android:textSize="12sp"
+
+        app:layout_constraintStart_toEndOf="@+id/labelStatsAPG"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadorFavoritoTotStatsBPG"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="245dp"
+        android:layout_marginTop="630dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="TPP"
+
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsSPG"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadorFavoritoTotStatsTOPG"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="278dp"
+        android:layout_marginTop="630dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="PÉR"
+
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsBPG"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadorFavoritoTotStatsFGP"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="311dp"
+        android:layout_marginTop="630dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="%TC"
+
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsTOPG"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadorFavoritoTotStatsTPP"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="344dp"
+        android:layout_marginTop="630dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="%3P"
+
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsFGP"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textViewJugadorFavoritoTotStatsFTP"
+        android:layout_width="31dp"
+        android:layout_height="30dp"
+        android:layout_marginStart="377dp"
+        android:layout_marginTop="630dp"
+        android:background="@drawable/back"
+        android:gravity="center"
+        android:text="%TL"
+        android:textSize="12sp"
+        app:layout_constraintStart_toEndOf="@+id/labelStatsTPP"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.cardview.widget.CardView>
+
+
+
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="405dp"
+        android:layout_height="300dp"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
+        app:cardBackgroundColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:src="@tools:sample/avatars" />
+        app:layout_constraintTop_toTopOf="parent">
+        <ImageView
+            android:id="@+id/imageViewEquipoFav"
+            android:layout_width="180dp"
+            android:layout_height="160dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="96dp"
+            android:scaleType="fitXY"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:src="@tools:sample/avatars" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="200dp"
+            android:layout_height="19dp"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="96dp"
+            android:layout_marginBottom="4dp"
+            android:text="EQUIPO FAVORITO"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toTopOf="@+id/textViewEquipoFavorito"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewEquipoFavoritoDivName"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="235dp"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView26"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="155dp"
+            android:text="CONFERENCIA"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewEquipoFavoritoConfName"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="179dp"
+            android:text=""
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView28"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="210dp"
+            android:text="DIVISIÓN"
+            android:textStyle="bold"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+        <TextView
+            android:id="@+id/textViewEquipoFavorito"
+            android:layout_width="200dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="210dp"
+            android:layout_marginTop="122dp"
+            android:text=""
+
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textViewUsuario"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="16dp"
+            android:text="Usuario"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.cardview.widget.CardView>
+
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

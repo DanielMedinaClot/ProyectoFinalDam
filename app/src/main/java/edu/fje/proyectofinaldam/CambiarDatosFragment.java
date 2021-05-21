@@ -130,6 +130,8 @@ public class CambiarDatosFragment extends Fragment {
                 if (task2.isSuccessful()) {
                     Toast.makeText(getActivity(), "Datos Cambiados.",
                             Toast.LENGTH_SHORT).show();
+
+
                 }else{
                     Toast.makeText(getActivity(), "Error database.",
                             Toast.LENGTH_SHORT).show();

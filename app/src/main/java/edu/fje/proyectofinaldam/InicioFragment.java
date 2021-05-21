@@ -55,6 +55,12 @@ public class InicioFragment extends Fragment {
     public ImageView fotoEquipoFavorito;
 
     public TextView email;
+    public TextView equipoFavoritoConfName, equipoFavoritoDivName;
+    public String confName, divName;
+    public TextView jugadorFavoritoPos, jugadorFavoritoJersey, jugadorFavoritoHeight, jugadorFavoritoWeight;
+    public String pos, jersey, height, weight;
+    public TextView JugadorFavoritoSeasonYear, JugadorFavoritoGamesPlayed, JugadorFavoritoMPG, JugadorFavoritoPPG, JugadorFavoritoRPG, JugadorFavoritoAPG, JugadorFavoritoSPG, JugadorFavoritoBPG, JugadorFavoritoTOPG, JugadorFavoritoFGP, JugadorFavoritoTPP, JugadorFavoritoFTP;
+    public TextView JugadorFavoritoTotSeasonYear, JugadorFavoritoTotGamesPlayed, JugadorFavoritoTotMPG, JugadorFavoritoTotPPG, JugadorFavoritoTotRPG, JugadorFavoritoTotAPG, JugadorFavoritoTotSPG, JugadorFavoritoTotBPG, JugadorFavoritoTotTOPG, JugadorFavoritoTotFGP, JugadorFavoritoTotTPP, JugadorFavoritoTotFTP;
     public String user;
 
     private FirebaseAuth mAuth;
@@ -89,10 +95,45 @@ public class InicioFragment extends Fragment {
         prueba = view.findViewById(R.id.textViewUsuario);
         jugadorFavorito = view.findViewById(R.id.textViewJugadorFavorito);
         equipoFavorito = view.findViewById(R.id.textViewEquipoFavorito);
-        statsJugadorFavorito = view.findViewById(R.id.textViewStatsJugadorFav);
+
         fotoJugadorFavorito = view.findViewById(R.id.imageViewJugadorFav);
         fotoEquipoFavorito = view.findViewById(R.id.imageViewEquipoFav);
         email = view.findViewById(R.id.textViewEmail);
+
+        equipoFavoritoConfName = view.findViewById(R.id.textViewEquipoFavoritoConfName);
+        equipoFavoritoDivName = view.findViewById(R.id.textViewEquipoFavoritoDivName);
+
+        jugadorFavoritoPos = view.findViewById(R.id.textViewJugadorFavoritoPos);
+        jugadorFavoritoJersey = view.findViewById(R.id.textViewJugadoresFavoritoJersey);
+        jugadorFavoritoHeight = view.findViewById(R.id.textViewJugadorFavoritoHeight);
+        jugadorFavoritoWeight = view.findViewById(R.id.textViewJugadorFavoritoWeight);
+
+        JugadorFavoritoSeasonYear = view.findViewById(R.id.textViewJugadorFavoritoStatsSeasonYear);
+        JugadorFavoritoGamesPlayed = view.findViewById(R.id.textViewJugadorFavoritoStatsGamesPlayed);
+        JugadorFavoritoMPG = view.findViewById(R.id.textViewJugadorFavoritoStatsMPG);
+        JugadorFavoritoPPG= view.findViewById(R.id.textViewJugadorFavoritoStatsPPG);
+        JugadorFavoritoRPG = view.findViewById(R.id.textViewJugadorFavoritoStatsRPG);
+        JugadorFavoritoAPG = view.findViewById(R.id.textViewJugadorFavoritoStatsAPG);
+        JugadorFavoritoSPG = view.findViewById(R.id.textViewJugadorFavoritoStatsSPG);
+        JugadorFavoritoBPG = view.findViewById(R.id.textViewJugadorFavoritoStatsBPG);
+        JugadorFavoritoTOPG = view.findViewById(R.id.textViewJugadorFavoritoStatsTOPG);
+        JugadorFavoritoFGP = view.findViewById(R.id.textViewJugadorFavoritoStatsFGP);
+        JugadorFavoritoTPP = view.findViewById(R.id.textViewJugadorFavoritoStatsTPP);
+        JugadorFavoritoFTP = view.findViewById(R.id.textViewJugadorFavoritoStatsFTP);
+        JugadorFavoritoTotSeasonYear = view.findViewById(R.id.textViewJugadorFavoritoTotStatsSeasonYear);
+        JugadorFavoritoTotGamesPlayed = view.findViewById(R.id.textViewJugadorFavoritoTotStatsGamesPlayed);
+        JugadorFavoritoTotMPG = view.findViewById(R.id.textViewJugadorFavoritoTotStatsMPG);
+        JugadorFavoritoTotPPG= view.findViewById(R.id.textViewJugadorFavoritoTotStatsPPG);
+        JugadorFavoritoTotRPG = view.findViewById(R.id.textViewJugadorFavoritoTotStatsRPG);
+        JugadorFavoritoTotAPG = view.findViewById(R.id.textViewJugadorFavoritoTotStatsAPG);
+        JugadorFavoritoTotSPG = view.findViewById(R.id.textViewJugadorFavoritoTotStatsSPG);
+        JugadorFavoritoTotBPG = view.findViewById(R.id.textViewJugadorFavoritoTotStatsBPG);
+        JugadorFavoritoTotTOPG = view.findViewById(R.id.textViewJugadorFavoritoTotStatsTOPG);
+        JugadorFavoritoTotFGP = view.findViewById(R.id.textViewJugadorFavoritoTotStatsFGP);
+        JugadorFavoritoTotTPP = view.findViewById(R.id.textViewJugadorFavoritoTotStatsTPP);
+        JugadorFavoritoTotFTP = view.findViewById(R.id.textViewJugadorFavoritoTotStatsFTP);
+
+
 
         mAuth = FirebaseAuth.getInstance();
         mDatabase = FirebaseDatabase.getInstance().getReference();
@@ -112,7 +153,7 @@ public class InicioFragment extends Fragment {
                 jugadorFav = snapshot.child("jugadorFavorito").getValue().toString().toLowerCase();
                 equipoFav = snapshot.child("equipoFavorito").getValue().toString().toLowerCase();
                 user = snapshot.child("email").getValue().toString().toLowerCase();
-                //emailUsuario.setText(user);
+                prueba.setText(user);
                 jugadorFavorito.setText(jugadorFav);
                 equipoFavorito.setText(equipoFav);
                 separarContenidoBuscador(jugadorFav);
@@ -142,8 +183,13 @@ public class InicioFragment extends Fragment {
                             for(int i=0; i<dataArray.length();i++){
                                 JSONObject jugador = dataArray.getJSONObject(i);
                                 if(jugador.getString("lastName").toLowerCase().equals(jugadorFav) || jugador.getString("lastName").toLowerCase().equals(jugadorFav) || jugador.getString("lastName").toLowerCase().equals(apellido) && jugador.getString("firstName").toLowerCase().equals(nombre) || jugador.getString("firstName").toLowerCase().equals(jugadorFav)){     //igualar con la id luego
-                                    jugadorFavorito.setText(dataArray.getString(i));
+                                    //jugadorFavorito.setText(dataArray.getString(i));
                                     idJugadorFav = jugador.getString("personId");
+                                    jugadorFavorito.setText(jugador.getString("temporaryDisplayName"));
+                                    jugadorFavoritoPos.setText(jugador.getString("pos"));
+                                    jugadorFavoritoJersey.setText(jugador.getString("jersey"));
+                                    jugadorFavoritoHeight.setText(jugador.getString("heightMeters"));
+                                    jugadorFavoritoWeight.setText(jugador.getString("weightKilograms"));
 
                                     //"https://cdn.nba.com/headshots/nba/latest/1040x760/"+idJugadorFav+".png"
                                 }
@@ -184,9 +230,12 @@ public class InicioFragment extends Fragment {
                             for(int i=0; i<dataArray.length();i++){
                                 JSONObject equipo = dataArray.getJSONObject(i);
                                 if(equipo.getString("urlName").toLowerCase().equals(equipoFav) || equipo.getString("city").toLowerCase().equals(equipoFav) || equipo.getString("fullName").toLowerCase().equals(equipoFav)){
-                                    equipoFavorito.setText(dataArray.getString(i));
+                                    //equipoFavorito.setText(dataArray.getString(i));
                                     idEquipoFav = equipo.getString("teamId");
                                     tricode = equipo.getString("tricode");
+                                    equipoFavorito.setText(equipo.getString("fullName"));
+                                    equipoFavoritoConfName.setText(equipo.getString("confName"));
+                                    equipoFavoritoDivName.setText(equipo.getString("divName"));
 
                                 }
                                 //String firstName = standard.getString("standard");
@@ -230,8 +279,49 @@ public class InicioFragment extends Fragment {
                             JSONObject dataArray = league.getJSONObject("standard");
                             JSONObject statsArray = dataArray.getJSONObject("stats");
 
-                            statsJugadorFavorito.setText(statsArray.toString());
-                                //String firstName = standard.getString("standard");
+                            //statsJugadorFavorito.setText(statsArray.toString());
+                            JSONObject statsCareerSummary = statsArray.getJSONObject("careerSummary");
+
+                            JSONObject statsRegularSeason = statsArray.getJSONObject("regularSeason");
+                            JSONArray statsSeason = statsRegularSeason.getJSONArray("season");
+                            for(int i = 0; i<1; i++){
+                                JSONObject statsYear = statsSeason.getJSONObject(i);
+                                JugadorFavoritoSeasonYear.setText(statsYear.getString("seasonYear"));
+                                JSONObject statsTotal = statsYear.getJSONObject("total");
+                                //mpg, ppg, rpg, apg, spg, bpg, topg, fgp, tpp, ftp;
+
+                                JugadorFavoritoGamesPlayed.setText(statsTotal.getString("gamesPlayed"));
+                                JugadorFavoritoMPG.setText(statsTotal.getString("mpg"));
+                                JugadorFavoritoPPG.setText(statsTotal.getString("ppg"));
+                                JugadorFavoritoRPG.setText(statsTotal.getString("rpg"));
+                                JugadorFavoritoAPG.setText(statsTotal.getString("apg"));
+                                JugadorFavoritoSPG.setText(statsTotal.getString("spg"));
+                                JugadorFavoritoBPG.setText(statsTotal.getString("bpg"));
+                                JugadorFavoritoTOPG.setText(statsTotal.getString("topg"));
+                                JugadorFavoritoFGP.setText(statsTotal.getString("fgp"));
+                                JugadorFavoritoTPP.setText(statsTotal.getString("tpp"));
+                                JugadorFavoritoFTP.setText(statsTotal.getString("ftp"));
+
+                            }
+                            int to = Integer.parseInt(statsCareerSummary.getString("turnovers"));
+                            int matches = Integer.parseInt(statsCareerSummary.getString("gamesPlayed"));
+                            double turnPG = to/matches;
+                            String turnPGS = String.valueOf(turnPG);
+
+                            JugadorFavoritoTotSeasonYear.setText("TOT");
+                            JugadorFavoritoTotGamesPlayed.setText(statsCareerSummary.getString("gamesPlayed"));
+                            JugadorFavoritoTotMPG.setText(statsCareerSummary.getString("mpg"));
+                            JugadorFavoritoTotPPG.setText(statsCareerSummary.getString("ppg"));
+                            JugadorFavoritoTotRPG.setText(statsCareerSummary.getString("rpg"));
+                            JugadorFavoritoTotAPG.setText(statsCareerSummary.getString("apg"));
+                            JugadorFavoritoTotSPG.setText(statsCareerSummary.getString("spg"));
+                            JugadorFavoritoTotBPG.setText(statsCareerSummary.getString("bpg"));
+                            JugadorFavoritoTotTOPG.setText(turnPGS);
+                            JugadorFavoritoTotFGP.setText(statsCareerSummary.getString("fgp"));
+                            JugadorFavoritoTotTPP.setText(statsCareerSummary.getString("tpp"));
+                            JugadorFavoritoTotFTP.setText(statsCareerSummary.getString("ftp"));
+
+
 
 
                         } catch (JSONException e) {

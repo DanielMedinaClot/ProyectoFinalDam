@@ -329,7 +329,19 @@ public class JugadoresFragment extends Fragment {
                                 stats.add(new StatsList(statsSeasonYear, gamesPlayed, mpg, ppg,rpg,apg, spg, bpg, topg, fgp, tpp, ftp));
 
 
+
+
+
                             }
+                            int to = Integer.parseInt(statsCareerSummary.getString("turnovers"));
+                            int matches = Integer.parseInt(statsCareerSummary.getString("gamesPlayed"));
+                            double turnPG = to/matches;
+                            String turnPGS = String.valueOf(turnPG);
+
+                            stats.add(new StatsList("TOT",statsCareerSummary.getString("gamesPlayed"),statsCareerSummary.getString("mpg"),
+                                    statsCareerSummary.getString("ppg"),statsCareerSummary.getString("rpg"),statsCareerSummary.getString("apg"),
+                                    statsCareerSummary.getString("spg"),statsCareerSummary.getString("bpg"),turnPGS,
+                                    statsCareerSummary.getString("fgp"),statsCareerSummary.getString("tpp"),statsCareerSummary.getString("ftp")));
                             StatsAdapter statsAdapter = new StatsAdapter(stats);
                             recycler.setAdapter(statsAdapter);
                             //statsJugadorBuscado.setText(statsArray.toString());

@@ -183,7 +183,7 @@
             android:layout_marginStart="56dp"
             android:layout_marginBottom="4dp"
             android:textStyle="bold"
-            android:text="ALTURA"
+            android:text="ALTURA EN PIES"
             app:layout_constraintBottom_toTopOf="@+id/textViewDraftHeight"
             app:layout_constraintStart_toStartOf="parent" />
 
@@ -193,7 +193,7 @@
             android:layout_height="25dp"
             android:layout_marginEnd="28dp"
             android:layout_marginBottom="4dp"
-            android:text="PESO"
+            android:text="PESO EN LIBRAS"
             android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/textViewDraftWeight"
             app:layout_constraintEnd_toEndOf="parent" />
