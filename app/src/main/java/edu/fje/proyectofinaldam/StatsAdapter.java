@@ -11,6 +11,8 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+
+//Adaptador para generar el RecyclerView de las Stats
 public class StatsAdapter extends RecyclerView.Adapter<StatsAdapter.ViewHolder> {
     private List<StatsList> stats;
 

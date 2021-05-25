@@ -19,6 +19,8 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
+
+//Activity para loguearte en Firebase y entrar en la App
 public class LoginActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
@@ -43,11 +45,15 @@ public class LoginActivity extends AppCompatActivity {
         btnLogin = (Button) findViewById(R.id.btnLogin);
     }
 
+
+    //Función para ir al activity del Register
     public void goRegister(View v){
         Intent intent = new Intent(LoginActivity.this, RegisterActivity.class);
         startActivity(intent);
     }
 
+
+    //Función para loguearte con Firebase
     public void loginUsuari(View v){
         usuario = editTextUsuario.getText().toString();
         contrasena = editTextContrasena.getText().toString();

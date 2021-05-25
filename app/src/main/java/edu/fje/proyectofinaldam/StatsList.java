@@ -1,5 +1,7 @@
 package edu.fje.proyectofinaldam;
 
+
+//Clase para generar objectos de Stats para el Recycler
 public class StatsList {
 
     private String seasonYear, gamesPlayed, mpg, ppg, rpg, apg, spg, bpg, topg, fgp, tpp, ftp;

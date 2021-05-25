@@ -2,6 +2,7 @@ package edu.fje.proyectofinaldam;
 
 import java.io.Serializable;
 
+//Clase para generar objectos de Draft para el Recycler
 public class DraftList implements Serializable {
 
     public String prospect;

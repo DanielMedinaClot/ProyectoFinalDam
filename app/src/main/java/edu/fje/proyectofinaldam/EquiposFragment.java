@@ -31,6 +31,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
+//Fragment para la página de los Equipos
 public class EquiposFragment extends Fragment {
 
     public TextView pruebaEquipos;
@@ -98,6 +100,7 @@ public class EquiposFragment extends Fragment {
 
         players = new ArrayList<>();
 
+        //Función para buscar el equipo entrado por el EditText
         buscarEquipo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -170,6 +173,8 @@ public class EquiposFragment extends Fragment {
         });
     }
 
+
+    //Función para buscar la plantilla del equipo buscado
     public void rosterEquipoBuscado(String id){
         String urlRosterEquipo = "https://data.nba.net/prod/v1/2020/teams/"+id+"/roster.json" ;
         JsonObjectRequest requestRosterEquipo = new JsonObjectRequest(Request.Method.GET, urlRosterEquipo, null,
@@ -211,6 +216,8 @@ public class EquiposFragment extends Fragment {
         queue.add(requestRosterEquipo);
     }
 
+
+    //Función datos para coger datos de los usuarios con las id de la lista anterior
     public void nombresRoster(String id){
 
         JsonObjectRequest requestNombresRoster = new JsonObjectRequest(Request.Method.GET, urlJug, null,

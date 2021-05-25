@@ -1,6 +1,7 @@
 package edu.fje.proyectofinaldam;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.Drawable;
@@ -14,6 +15,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -45,7 +47,7 @@ import java.util.Map;
 import java.io.InputStream;
 import java.net.URL;
 
-
+// Pantalla principal con los gustos del Jugador
 public class InicioFragment extends Fragment {
     public TextView prueba;
     public TextView jugadorFavorito;
@@ -53,6 +55,7 @@ public class InicioFragment extends Fragment {
     public TextView statsJugadorFavorito;
     public ImageView fotoJugadorFavorito;
     public ImageView fotoEquipoFavorito;
+    public Button logout;
 
     public TextView email;
     public TextView equipoFavoritoConfName, equipoFavoritoDivName;
@@ -133,6 +136,8 @@ public class InicioFragment extends Fragment {
         JugadorFavoritoTotTPP = view.findViewById(R.id.textViewJugadorFavoritoTotStatsTPP);
         JugadorFavoritoTotFTP = view.findViewById(R.id.textViewJugadorFavoritoTotStatsFTP);
 
+        logout = view.findViewById(R.id.btnLogout);
+
 
 
         mAuth = FirebaseAuth.getInstance();
@@ -143,8 +148,20 @@ public class InicioFragment extends Fragment {
         cogerDatosConFirebase();
 
 
+        //Función cerrar sesión
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mAuth.signOut();
+                startActivity(new Intent(getContext(),LoginActivity.class));
+
+            }
+        });
 
     }
+
+
+    //Función coger usuario
     public void cogerInfoUser(){
         String id = mAuth.getCurrentUser().getUid();
         mDatabase.child("Usuarios").child(id).addValueEventListener(new ValueEventListener() {
@@ -168,6 +185,7 @@ public class InicioFragment extends Fragment {
     }
 
 
+    //Función coger datos Api Jugadores
     public void cogerDatosConFirebase(){
 
         queue = Volley.newRequestQueue(getActivity().getApplicationContext());
@@ -267,6 +285,8 @@ public class InicioFragment extends Fragment {
         queue.add(requestEquipos);
     }
 
+
+    //Función coger datos Api Stats Jugadores
     public void statsJugador(String id) {
         String urlStatsJugador = "https://data.nba.net/10s/prod/v1/2020/players/"+id+"_profile.json";
         JsonObjectRequest requestStatsEquipos = new JsonObjectRequest(Request.Method.GET, urlStatsJugador, null,
@@ -383,6 +403,8 @@ public class InicioFragment extends Fragment {
         }
     }
 
+
+    //Función separar nombre buscador
     public void separarContenidoBuscador(String contenido){
         int cantidadDeEspacios = 0;
         // Recorremos la cadena:

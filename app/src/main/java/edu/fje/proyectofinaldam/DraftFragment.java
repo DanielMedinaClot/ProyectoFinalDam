@@ -30,6 +30,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 
+
+// Página del Draft donde se hace la request para generar la tabla
 public class DraftFragment extends Fragment {
 
     public TextView pruebaDraft;
@@ -55,6 +57,8 @@ public class DraftFragment extends Fragment {
         return inflater.inflate(R.layout.fragment_draft, container, false);
     }
 
+
+    //Funciones para hacer request a la url de Draft
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);

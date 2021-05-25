@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 
+//Adaptador para generar recyclerView del Draft
     public class DraftAdapter extends RecyclerView.Adapter<DraftAdapter.ViewHolder> {
         private List<DraftList> drafts;
 

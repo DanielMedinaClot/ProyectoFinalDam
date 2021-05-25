@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
+//Adaptador para generar el RecyclerView de los Jugadores
 public class JugadoresAdapter extends RecyclerView.Adapter<JugadoresAdapter.ViewHolder>{
     private List<JugadoresList> players;
 

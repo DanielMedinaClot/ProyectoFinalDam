@@ -27,6 +27,7 @@ import com.google.firebase.database.ValueEventListener;
 import java.util.HashMap;
 import java.util.Map;
 
+//Fragment clase para cambiar datos de los usuarios
 public class CambiarDatosFragment extends Fragment {
 
     public EditText antiguaPassword;
@@ -118,6 +119,9 @@ public class CambiarDatosFragment extends Fragment {
 
 
     }
+
+
+    //Función para cambiar los datos de los usuarios
     public void cambiarDatos(){
         Map<String, Object> datosMap = new HashMap<>();
         datosMap.put("equipoFavorito",nuevoEquipoFav);

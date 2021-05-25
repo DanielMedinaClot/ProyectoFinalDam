@@ -26,6 +26,8 @@ import com.google.firebase.database.FirebaseDatabase;
 import java.util.HashMap;
 import java.util.Map;
 
+
+//Activity para registrarse en Firebase
 public class RegisterActivity extends AppCompatActivity {
 
     private FirebaseAuth mAuth;
@@ -59,6 +61,8 @@ public class RegisterActivity extends AppCompatActivity {
         textViewLogin = (TextView) findViewById(R.id.textViewLogin);
     }
 
+
+    //Función para mirar el contenido de los textos y registrarte en firebase
     public void registro(View v){
         usuario = editTextUsuario.getText().toString();
         contrasena = editTextContrasena.getText().toString();
@@ -89,6 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
+    //Funcion para registrarte en Firebase
     public void registrarUsuario(){
 
         mAuth.createUserWithEmailAndPassword(usuario, contrasena).addOnCompleteListener(this, new OnCompleteListener<AuthResult>() {
@@ -142,6 +147,7 @@ public class RegisterActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    //Función para ir al Activity del Register
     public void goLogin(View v){
         Intent intent = new Intent(RegisterActivity.this, LoginActivity.class);
         startActivity(intent);

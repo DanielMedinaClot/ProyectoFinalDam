@@ -8,6 +8,9 @@ import android.widget.ImageView;
 import java.io.InputStream;
 import java.net.URL;
 
+
+
+// Clase para poner las imagenes cogidas desde url
 public class DownloadImageTask extends AsyncTask<String,Void, Bitmap> {
     ImageView imageView;
 

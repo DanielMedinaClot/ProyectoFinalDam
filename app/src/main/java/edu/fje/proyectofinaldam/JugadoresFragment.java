@@ -52,6 +52,7 @@ import java.util.List;
 import java.util.Map;
 
 
+//Página para buscar datos jugadores
 public class JugadoresFragment extends Fragment {
 
     public TextView pruebaJugadores;
@@ -141,52 +142,7 @@ public class JugadoresFragment extends Fragment {
         ArrayList<String> a1 = new ArrayList<String>();
 
 
-/*
-//create post data as JSONObject - if your are using JSONArrayRequest use obviously an JSONArray :)
-        RequestQueue queue = Volley.newRequestQueue(getActivity().getApplicationContext());
-
-        JsonObjectRequest getRequest = new JsonObjectRequest( Request.Method.GET, url, json,
-                new Response.Listener<JSONObject>()
-                {
-                    @Override
-                    public void onResponse(JSONObject response) {
-                        // response
-                        a1.add(response.toString());
-
-                            pruebaJugadores.setText(response.toString());
-
-
-
-                        // pruebaJugadores.setText(a1.toArray()[iu].toString());
-
-                    }
-
-                },
-                new Response.ErrorListener()
-                {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        // TODO Auto-generated method stub
-                        pruebaJugadores.setText("error");
-                    }
-                }
-        ){        //this is the part, that adds the header to the request
-            @Override
-            public Map<String, String> getHeaders() {
-                Map<String, String> params = new HashMap<String, String>();
-                params.put("x-rapidapi-key", "b0030df614msh86958735e39a051p11a017jsn3f3b87480909");
-                //params.put("x-rapidapi-host","nba-stats4.p.rapidapi.com");
-                params.put("x-rapidapi-host","free-nba.p.rapidapi.com");
-                return params;
-            }
-        };
-
-
-// Add the request to the queue
-        queue.add(getRequest);
-
-*/
-
+//Función para buscar un jugador
     buscarJugador.setOnClickListener(new View.OnClickListener() {
         @Override
         public void onClick(View v) {
@@ -275,6 +231,7 @@ public class JugadoresFragment extends Fragment {
     }
 
 
+    //Función para separar el texto buscado en el EditTxt
     public void separarContenidoBuscador(String contenido){
         int cantidadDeEspacios = 0;
         // Recorremos la cadena:
@@ -294,6 +251,7 @@ public class JugadoresFragment extends Fragment {
     }
 
 
+    //Funcion para hacer el request de las stats del jugador buscado
     public void statsJugador(String id) {
         String urlStatsJugador = "https://data.nba.net/10s/prod/v1/2020/players/"+id+"_profile.json";
         JsonObjectRequest requestStatsJugadores = new JsonObjectRequest(Request.Method.GET, urlStatsJugador, null,

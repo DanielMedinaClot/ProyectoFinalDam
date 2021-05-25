@@ -1,5 +1,7 @@
 package edu.fje.proyectofinaldam;
 
+
+//Clase para generar objectos de Jugadores para el Recycler
 public class JugadoresList {
 
     private String temporaryDisplayName, jersey , pos, nbaDebutYear, country;
